@@ -68,27 +68,29 @@ const Home = () => {
 
   return (
     <div className="App mx-4 sm:mx-12">
-      <div className='flex align-center justify-center'>
-        <label htmlFor="league-selector">Select a league:</label>
-        <select
-          id="league-selector"
-          value={selectedLeague}
-          onChange={handleLeagueSelect}
-        >
-          {leagues.map((league) => (
-            <option key={league.id} value={league.id}>
-              {league.name}
-            </option>
-          ))}
-        </select>
-        <label htmlFor="team-selector">Select a team:</label>
+      <div className='flex flex-col md:flex-row items-center justify-center space-y-2 md:space-y-0 md:space-x-4'>
+      <label htmlFor="league-selector" className="text-sm md:text-base">Select a league:</label>
+      <select
+        id="league-selector"
+        value={selectedLeague}
+        onChange={handleLeagueSelect}
+        className="text-sm md:text-base p-1 rounded-md"
+      >
+        {leagues.map((league) => (
+          <option key={league.id} value={league.id}>
+            {league.name}
+          </option>
+        ))}
+      </select>
+      <label htmlFor="team-selector" className="text-sm md:text-base">Select a team:</label>
       <TeamSelector
         teams={teams}
         selectedTeam={selectedTeam}
         handleTeamSelect={handleTeamSelect}
         leagueId={selectedLeague}
+        className="text-sm md:text-base bg-white p-1 rounded-md"
       />
-      </div>
+    </div>
 
       {selectedTeam && (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-4 mt-4">
