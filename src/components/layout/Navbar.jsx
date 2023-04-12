@@ -37,7 +37,7 @@ const Navbar = ({ title }) => {
 }
 
 Navbar.defaultProps = {
-  title: 'Fanbase',
+  title: 'Fanbase Official',
 }
 
 Navbar.propTypes = {

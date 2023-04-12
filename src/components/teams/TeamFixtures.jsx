@@ -54,14 +54,14 @@ const TeamFixtures = ({ teamId }) => {
   <ul className="space-y-10">
     {upcomingFixtures.slice(0, fixturesToShow).map((fixture, index) => (
       <li key={index} className="flex flex-col items-center justify-center space-y-2 md:flex-row md:space-y-0">
-        <div className="flex items-center">
-          <img src={fixture.teams.home.logo} alt="home logo" className="w-10 h-10 m-auto mr-4" />
+        <div className="flex items-center flex-col md:flex-row">
+          <img src={fixture.teams.home.logo} alt="home logo" className="w-10 h-10 m-auto md:mr-4" />
           <span className="text-lg md:text-xl">{fixture.teams.home.name}</span>
         </div>
         <span className="mx-2 text-lg md:text-xl">vs</span>
-        <div className="flex items-center">
+        <div className="flex items-center flex-col md:flex-row">
           <span className="text-lg md:text-xl">{fixture.teams.away.name}</span>
-          <img src={fixture.teams.away.logo} alt="away logo" className="w-10 h-10 m-auto ml-4 mr-4" />
+          <img src={fixture.teams.away.logo} alt="away logo" className="w-10 h-10 m-auto md:ml-4 md:mr-4" />
         </div>
         <p className="text-sm md:text-base">{formatDate(fixture.fixture.date)}</p>
       </li>

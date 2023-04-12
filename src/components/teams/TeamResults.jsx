@@ -41,19 +41,16 @@ const TeamResults = ({ teamId }) => {
       <h1 className="text-3xl font-bold text-center my-4">Recent League Results</h1>
       <ul className="space-y-6">
         {teamResults.map((result, index) => (
-          <li key={index} className="flex flex-col items-center justify-center space-y-2 md:flex-row md:space-y-0">
+          <li key={index} className="flex flex-col items-center justify-center space-y-2 md:flex-row md:space-y-0 border-b-2 md:border-b-0">
             <div className="flex items-center">
               <img src={result.teams.home.logo} alt="home logo" className="w-7 h-7 m-auto mr-4" />
-              <span className="text-lg md:text-xl">{result.teams.home.name}</span>
-            </div>
-            <div className="flex items-center mx-4">
+              <span className="text-lg md:text-xl mr-4">{result.teams.home.name}</span>
               <span className="font-bold text-lg md:text-xl">{result.goals.home}</span>
-              <span className="mx-2 text-lg md:text-xl">-</span>
-              <span className="font-bold text-lg md:text-xl">{result.goals.away}</span>
             </div>
-            <div className="flex items-center">
-              <span className="text-lg md:text-xl">{result.teams.away.name}</span>
+            <div className="flex items-center pb-4 md:pb-0">
               <img src={result.teams.away.logo} alt="away logo" className="w-7 h-7 m-auto ml-4" />
+              <span className="text-lg md:text-xl mr-4">{result.teams.away.name}</span>
+              <span className="font-bold text-lg md:text-xl">{result.goals.away}</span>
             </div>
           </li>
         ))}
