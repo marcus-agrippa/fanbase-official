@@ -17,12 +17,15 @@ const Navbar = ({ title }) => {
             <Link to='/' className='btn btn-ghost bt-sm rounded-btn'>
               Home
             </Link>
-            <Link to='/stats' className='btn btn-ghost bt-sm rounded-btn'>
+            {/* <Link to='/stats' className='btn btn-ghost bt-sm rounded-btn'>
               Stats
             </Link>
             <Link to='/news' className='btn btn-ghost bt-sm rounded-btn'>
               News
             </Link>
+            <Link to='/players' className='btn btn-ghost bt-sm rounded-btn'>
+              Players
+            </Link> */}
             <Link to='/about' className='btn btn-ghost bt-sm rounded-btn'>
               About
             </Link>

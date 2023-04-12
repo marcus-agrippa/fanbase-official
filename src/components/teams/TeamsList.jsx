@@ -20,7 +20,6 @@ const TeamsList = () => {
     })
 
     const data = await response.json();
-    console.log(data.response)
     setTeams(data.response)
     setLoading(false)
   }
@@ -36,8 +35,6 @@ const TeamsList = () => {
   } else {
     return <Spinner />
   }
-
-  
 }
 
 export default TeamsList
