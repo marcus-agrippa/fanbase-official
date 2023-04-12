@@ -62,7 +62,7 @@ const Home = () => {
   };
 
   const handleTeamSelect = (event) => {
-    const teamId = event.target.value;
+    const teamId = parseInt(event.target.value);
     setSelectedTeam(teamId);
   };
 

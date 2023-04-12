@@ -53,17 +53,19 @@ const TeamFixtures = ({ teamId }) => {
   <h1 className="text-3xl font-bold text-center my-4">Upcoming League Fixtures</h1>
   <ul className="space-y-10">
     {upcomingFixtures.slice(0, fixturesToShow).map((fixture, index) => (
-      <li key={index} className="flex flex-col items-center justify-center space-y-2 md:flex-row md:space-y-0">
-        <div className="flex items-center flex-col md:flex-row">
-          <img src={fixture.teams.home.logo} alt="home logo" className="w-10 h-10 m-auto md:mr-4" />
-          <span className="text-lg md:text-xl">{fixture.teams.home.name}</span>
+      <li key={index} className="flex items-center justify-center space-y-2 flex-col md:space-y-0">
+        <div className='flex flex-row'>
+          <div className="flex items-center flex-row">
+            <img src={fixture.teams.home.logo} alt="home logo" className="w-10 h-10 m-auto md:mr-4" />
+            {/* <span className="text-lg md:text-xl">{fixture.teams.home.name}</span> */}
+          </div>
+          <span className="mx-2 text-lg md:text-xl">vs</span>
+          <div className="flex items-center flex-row">
+            {/* <span className="text-lg md:text-xl">{fixture.teams.away.name}</span> */}
+            <img src={fixture.teams.away.logo} alt="away logo" className="w-10 h-10 m-auto md:ml-4 md:mr-4" />
+          </div>
         </div>
-        <span className="mx-2 text-lg md:text-xl">vs</span>
-        <div className="flex items-center flex-col md:flex-row">
-          <span className="text-lg md:text-xl">{fixture.teams.away.name}</span>
-          <img src={fixture.teams.away.logo} alt="away logo" className="w-10 h-10 m-auto md:ml-4 md:mr-4" />
-        </div>
-        <p className="text-sm md:text-base">{formatDate(fixture.fixture.date)}</p>
+        <p className="text-sm pt-5 md:text-base">{formatDate(fixture.fixture.date)}</p>
       </li>
     ))}
   </ul>

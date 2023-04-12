@@ -48,7 +48,7 @@ const TeamResults = ({ teamId }) => {
               <span className="font-bold text-lg md:text-xl">{result.goals.home}</span>
             </div>
             <div className="flex items-center pb-4 md:pb-0">
-              <img src={result.teams.away.logo} alt="away logo" className="w-7 h-7 m-auto ml-4" />
+              <img src={result.teams.away.logo} alt="away logo" className="w-7 h-7 m-auto ml-4 mr-4" />
               <span className="text-lg md:text-xl mr-4">{result.teams.away.name}</span>
               <span className="font-bold text-lg md:text-xl">{result.goals.away}</span>
             </div>

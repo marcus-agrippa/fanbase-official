@@ -35,7 +35,7 @@ const TeamData = ({ teamId }) => {
   return (
     <div className='bg-dark-1 text-white p-4 rounded-lg text-center'>
       <h1 className='text-3xl font-bold text-center my-4'>{teamData.team.name}</h1>
-      <img src={teamData.team.logo} alt="logo" className='m-auto my-10' />
+      <img src={teamData.team.logo} alt="logo" className='w-14 h-14 md:w-15 md:h-15 m-auto' />
       <p className='my-4'><span className='text-accent mr-2'>Country:</span> {teamData.team.country}</p>
       <p className='my-4'><span className='text-accent mr-2'>City:</span> {teamData.venue.city}</p>
       <p className='my-4'><span className='text-accent mr-2'>Founded:</span> {teamData.team.founded}</p>

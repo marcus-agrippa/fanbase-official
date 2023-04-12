@@ -8,7 +8,7 @@ const Navbar = ({ title }) => {
       <div className='container mx-auto'>
         <div className='flex-1 px-2 mx-2'>
           <GiSoccerBall className='inline pr-2 text-5xl'/>
-          <Link to='/' className='text-2xl font-bold align-middle md:text-1xl'>
+          <Link to='/' className='text-1xl font-bold align-middle md:text-2xl'>
             {title}
           </Link>
         </div>
@@ -37,7 +37,7 @@ const Navbar = ({ title }) => {
 }
 
 Navbar.defaultProps = {
-  title: 'Fanbase Official',
+  title: 'Fanbase',
 }
 
 Navbar.propTypes = {

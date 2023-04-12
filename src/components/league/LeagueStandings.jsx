@@ -41,12 +41,12 @@ const LeagueStandings = ({ leagueId, season, teamId }) => {
         <table className="w-full table-auto">
           <thead>
             <tr className="bg-dark-2">
-              <th className="py-2">Position</th>
+              <th className="py-2">Rank</th>
               <th className="py-2">Team</th>
-              <th className="py-2">Points</th>
+              <th className="py-2 text-accent">P</th>
               <th className="py-2">GD</th>
-              <th className="py-2">Form</th>
-              <th className="py-2">Matches</th>
+              <th className="hidden sm:table-cell py-2">Form</th>
+              <th className="py-2">MP</th>
               <th className="hidden sm:table-cell py-2">Wins</th>
               <th className="hidden sm:table-cell py-2">Draws</th>
               <th className="hidden sm:table-cell py-2">Losses</th>
@@ -57,7 +57,7 @@ const LeagueStandings = ({ leagueId, season, teamId }) => {
               <tr
                 key={index}
                 className={`${index % 2 === 0 ? "bg-gray-900" : "bg-gray-800"
-                  } ${team.team.id === parseInt(teamId) ? "bg-gray-400" : ""} ${(leagueId === "39" || leagueId === "140" || leagueId === "135" || leagueId === "61") && team.rank <= 4
+                  } ${team.team.id === parseInt(teamId) ? "bg-gray-500" : ""} ${(leagueId === "39" || leagueId === "140" || leagueId === "135" || leagueId === "61") && team.rank <= 4
                     ? "border-l-4 border-blue-500"
                     : leagueId === "78" && team.rank <= 3
                       ? "border-l-4 border-blue-500"
@@ -85,9 +85,9 @@ const LeagueStandings = ({ leagueId, season, teamId }) => {
                   <img src={team.team.logo} alt="team logo" className="w-6 h-6 mr-2" />
                   {team.team.name}
                 </td>
-                <td className="py-2 text-center">{team.points}</td>
+                <td className="py-2 text-center text-accent">{team.points}</td>
                 <td className="py-2 text-center">{team.goalsDiff}</td>
-                <td className="py-2 text-center">{team.form}</td>
+                <td className="hidden sm:table-cell py-2 text-center">{team.form}</td>
                 <td className="py-2 text-center">{team.all.played}</td>
                 <td className="hidden sm:table-cell py-2 text-center">{team.all.win}</td>
                 <td className="hidden sm:table-cell py-2 text-center">{team.all.draw}</td>
