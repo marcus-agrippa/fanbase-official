@@ -49,19 +49,21 @@ const TeamFixtures = ({ teamId }) => {
   const upcomingFixtures = teamFixtures.filter(fixture => new Date(fixture.fixture.date) >= new Date());
 
   return (
-    <div className="bg-dark-1 text-white p-4 rounded-lg">
+<div className="bg-dark-1 text-white p-4 rounded-lg">
   <h1 className="text-3xl font-bold text-center my-4">Upcoming League Fixtures</h1>
   <ul className="space-y-10">
     {upcomingFixtures.slice(0, fixturesToShow).map((fixture, index) => (
-      <li key={index} className="flex items-center flex-col">
+      <li key={index} className="flex flex-col items-center justify-center space-y-2 md:flex-row md:space-y-0">
         <div className="flex items-center">
           <img src={fixture.teams.home.logo} alt="home logo" className="w-10 h-10 m-auto mr-4" />
-          <span className="text-xl">{fixture.teams.home.name}</span>
-          <span className="mx-2">vs</span>
-          <span className="text-xl">{fixture.teams.away.name}</span>
-          <img src={fixture.teams.away.logo} alt="away logo" className="w-10 h-10 m-auto ml-4" />
+          <span className="text-lg md:text-xl">{fixture.teams.home.name}</span>
         </div>
-        <p>{formatDate(fixture.fixture.date)}</p>
+        <span className="mx-2 text-lg md:text-xl">vs</span>
+        <div className="flex items-center">
+          <span className="text-lg md:text-xl">{fixture.teams.away.name}</span>
+          <img src={fixture.teams.away.logo} alt="away logo" className="w-10 h-10 m-auto ml-4 mr-4" />
+        </div>
+        <p className="text-sm md:text-base">{formatDate(fixture.fixture.date)}</p>
       </li>
     ))}
   </ul>

@@ -6,13 +6,13 @@ const Navbar = ({ title }) => {
   return (
     <nav className='navbar mb-12 shadow-lg bg-neutral text-neutral-content'>
       <div className='container mx-auto'>
-        <div className='flex-none px-2 mx-2'>
-          <GiSoccerBall className='inline pr-2 text-6xl'/>
-          <Link to='/' className='text-2xl font-bold align-middle '>
+        <div className='flex-1 px-2 mx-2'>
+          <GiSoccerBall className='inline pr-2 text-5xl'/>
+          <Link to='/' className='text-2xl font-bold align-middle md:text-1xl'>
             {title}
           </Link>
         </div>
-        <div className="flex-1 px-2 mx-2">
+        <div className="flex-2 px-2 mx-2">
           <div className="flex justify-end">
             <Link to='/' className='btn btn-ghost bt-sm rounded-btn'>
               Home
@@ -37,7 +37,7 @@ const Navbar = ({ title }) => {
 }
 
 Navbar.defaultProps = {
-  title: 'Fanbase Official',
+  title: 'Fanbase',
 }
 
 Navbar.propTypes = {

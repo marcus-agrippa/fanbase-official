@@ -74,7 +74,7 @@ const Home = () => {
         id="league-selector"
         value={selectedLeague}
         onChange={handleLeagueSelect}
-        className="text-sm md:text-base p-1 rounded-md"
+        className="bg-white text-black text-sm md:text-base p-1 rounded-md"
       >
         {leagues.map((league) => (
           <option key={league.id} value={league.id}>
@@ -88,7 +88,6 @@ const Home = () => {
         selectedTeam={selectedTeam}
         handleTeamSelect={handleTeamSelect}
         leagueId={selectedLeague}
-        className="text-sm md:text-base bg-white p-1 rounded-md"
       />
     </div>
 
