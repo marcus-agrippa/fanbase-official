@@ -1,7 +1,5 @@
-// App.js
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { usePageViews } from './hooks/usePageViews';
-import ReactGA from 'react-ga';
 import Home from "./pages/Home";
 import Stats from "./pages/Stats";
 import News from "./pages/News";
@@ -10,12 +8,11 @@ import NotFound from "./pages/NotFound";
 import Navbar from "./components/layout/Navbar";
 import Footer from "./components/layout/Footer";
 
-ReactGA.initialize('G-2SJJYE492C');
-
 function App() {
+  usePageViews();
+
   return (
     <Router>
-      <PageViews />
       <div className="flex flex-col justify-between h-screen">
         <Navbar />
         <main className="mx-auto px-3 pb-12">
@@ -32,11 +29,6 @@ function App() {
       </div>
     </Router>
   );
-}
-
-function PageViews() {
-  usePageViews();
-  return null;
 }
 
 export default App;
