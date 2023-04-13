@@ -26,7 +26,6 @@ const InjuriesAndSuspensions = ({ teamId, season }) => {
         });
 
         const data = await response.json();
-        console.log('injuries and suspensions', data)
         const sortedAndFilteredInjuries = filterAndSortInjuries(data.response);
         setInjuries(sortedAndFilteredInjuries);
       } catch (error) {

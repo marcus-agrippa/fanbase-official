@@ -17,7 +17,6 @@ const NextFixture = ({ teamId }) => {
           },
         });
         const data = await response.json();
-        console.log('nextFixture', data)
         setNextFixture(data.response[0]);
       } catch (error) {
         console.error('Error fetching next fixture:', error);

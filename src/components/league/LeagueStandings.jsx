@@ -32,8 +32,6 @@ const LeagueStandings = ({ leagueId, season, teamId }) => {
     }
   }, [leagueId, season]);
 
-  console.log('Selected team ID:', teamId, 'Standings:', standings);
-
   return (
     <div className="bg-dark-1 text-white p-4 rounded-lg">
       <h1 className="text-3xl font-bold text-center my-4">League Standings</h1>
