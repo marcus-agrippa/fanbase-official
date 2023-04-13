@@ -81,9 +81,9 @@ const LeagueStandings = ({ leagueId, season, teamId }) => {
                   }`}
               >
                 <td className="py-2 text-center">{team.rank}</td>
-                <td className="py-2 flex items-center">
-                  <img src={team.team.logo} alt="team logo" className="w-6 h-6 mr-2" />
-                  {team.team.name}
+                <td className="py-2 flex items-center justify-center">
+                  <img src={team.team.logo} alt="team logo" className="w-6 h-6" />
+                  {/* {team.team.name} */}
                 </td>
                 <td className="py-2 text-center text-accent">{team.points}</td>
                 <td className="py-2 text-center">{team.goalsDiff}</td>
