@@ -7,7 +7,12 @@ export function usePageViews() {
   const location = useLocation();
 
   useEffect(() => {
-    ReactGA.set({ page: location.pathname + location.search });
-    ReactGA.pageview(location.pathname + location.search);
+    try {
+      ReactGA.set({ page: location.pathname + location.search });
+      ReactGA.pageview(location.pathname + location.search);
+    } catch (error) {
+      console.error('Google Analytics error:', error);
+    }
   }, [location]);
 }
+
