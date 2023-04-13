@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { usePageViews } from './hooks/usePageViews';
+import ReactGA from 'react-ga';
 import Home from "./pages/Home";
 import Stats from "./pages/Stats";
 import News from "./pages/News";
@@ -7,6 +8,8 @@ import About from "./pages/About";
 import NotFound from "./pages/NotFound";
 import Navbar from "./components/layout/Navbar";
 import Footer from "./components/layout/Footer";
+
+ReactGA.initialize('G-2SJJYE492C');
 
 function App() {
   usePageViews();
