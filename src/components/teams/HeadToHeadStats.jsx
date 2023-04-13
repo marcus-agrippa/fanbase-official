@@ -65,7 +65,8 @@ const HeadToHeadStats = ({ team1Id, team2Id }) => {
           <li key={index} className='flex items-center my-4'>
             <p className="hidden md:inline">{formatDate(fixture.fixture.date)}</p>
             <img src={fixture.teams.home.logo} alt="home logo" className="w-6 h-6 mx-2" />
-              {fixture.teams.home.name} {fixture.goals.home} - {fixture.goals.away} {fixture.teams.away.name}<img src={fixture.teams.away.logo} alt="away logo" className="w-6 h-6 mx-2" />
+             {fixture.goals.home} - {fixture.goals.away}
+            <img src={fixture.teams.away.logo} alt="away logo" className="w-6 h-6 mx-2" />
             <hr />
           </li>
         ))}
