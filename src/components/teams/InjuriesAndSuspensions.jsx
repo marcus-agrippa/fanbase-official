@@ -62,8 +62,8 @@ const InjuriesAndSuspensions = ({ teamId, season }) => {
           {injuries.map((injury, index) => (
             <tr key={index} className={index % 2 === 1 ? 'odd:bg-gray-800' : ''}>
               <td className="border border-gray-500 py-2 text-center">
-                <div className="flex items-center ">
-                  <img src={injury.player.photo} alt="player photo" className="w-10 h-10 m-auto mr-4" />
+                <div className="flex justify-start">
+                  <img src={injury.player.photo} alt="player photo" className="w-10 h-10 m-left mx-4" />
                   <span className="text-xl">{injury.player.name}</span>
                 </div>
               </td>
