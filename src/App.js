@@ -16,7 +16,6 @@ function App() {
 
   return (
     <Router>
-      <GoogleAnalytics />
       <div className="flex flex-col justify-between h-screen">
         <Navbar />
         <main className="mx-auto px-3 pb-12">
