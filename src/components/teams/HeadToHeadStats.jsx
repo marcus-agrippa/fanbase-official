@@ -62,12 +62,12 @@ const HeadToHeadStats = ({ team1Id, team2Id }) => {
       <h2 className="text-2xl font-bold my-4 text-center">Head-to-Head Statistics</h2>
       <ul>
         {headToHeadStats.slice(-5).map((fixture, index) => (
-          <li key={index} className='flex items-center my-4'>
-            <p className="hidden md:inline">{formatDate(fixture.fixture.date)}</p>
+          <li key={index} className='flex items-center justify-center my-4'>
             <img src={fixture.teams.home.logo} alt="home logo" className="w-6 h-6 mx-2" />
              {fixture.goals.home} - {fixture.goals.away}
             <img src={fixture.teams.away.logo} alt="away logo" className="w-6 h-6 mx-2" />
             <hr />
+            <p>{formatDate(fixture.fixture.date)}</p>
           </li>
         ))}
       </ul>
