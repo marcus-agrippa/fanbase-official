@@ -10,7 +10,9 @@ import NotFound from "./pages/NotFound";
 import Navbar from "./components/layout/Navbar";
 import Footer from "./components/layout/Footer";
 
-ReactGA.initialize('G-2SJJYE492C');
+const trackingId = process.env.REACT_APP_GOOGLE_ANALYTICS_TRACKING_ID;
+
+ReactGA.initialize(trackingId);
 
 function App() {
   return (
