@@ -3,11 +3,12 @@ import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import ReactGA from 'react-ga';
 
-export function usePageViews() {
+export const usePageViews = () => {
   const location = useLocation();
 
   useEffect(() => {
     try {
+      console.log('Sending pageview:', location.pathname + location.search);
       ReactGA.set({ page: location.pathname + location.search });
       ReactGA.pageview(location.pathname + location.search);
     } catch (error) {
