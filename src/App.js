@@ -17,11 +17,11 @@ ReactGA.initialize(trackingId);
 function App() {
   return (
     <Router>
-      <PageViews />
       <div className="flex flex-col justify-between h-screen">
         <Navbar />
         <main className="mx-auto px-3 pb-12">
           <Routes>
+          <PageViews />
             <Route path="/" element={<Home />} />
             <Route path="/stats" element={<Stats />} />
             <Route path="/news" element={<News />} />
