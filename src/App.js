@@ -1,8 +1,10 @@
 // App.js
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { usePageViews } from './hooks/usePageViews';
+import React, { useState } from 'react';
 import ReactGA from "react-ga4";
 import Home from "./pages/Home";
+import Players from "./pages/Players";
 import Stats from "./pages/Stats";
 import News from "./pages/News";
 import About from "./pages/About";
@@ -15,6 +17,9 @@ const trackingId = process.env.REACT_APP_GOOGLE_ANALYTICS_TRACKING_ID;
 ReactGA.initialize(trackingId);
 
 function App() {
+  const [leagueId, setLeagueId] = useState(null);
+  const [teamId, setTeamId] = useState(null);
+
   return (
     <Router>
       <PageViews />
@@ -24,6 +29,15 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/stats" element={<Stats />} />
+            <Route
+              path="/players"
+              element={
+                <Players
+                  leagueId={leagueId}
+                  teamId={teamId}
+                />
+              }
+            />
             <Route path="/news" element={<News />} />
             <Route path="/about" element={<About />} />
             <Route path="/notfound" element={<NotFound />} />

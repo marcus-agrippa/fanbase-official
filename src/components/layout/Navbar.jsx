@@ -22,10 +22,10 @@ const Navbar = ({ title }) => {
             </Link>
             <Link to='/news' className='btn btn-ghost bt-sm rounded-btn'>
               News
-            </Link>
+            </Link> */}
             <Link to='/players' className='btn btn-ghost bt-sm rounded-btn'>
               Players
-            </Link> */}
+            </Link>
             <Link to='/about' className='btn btn-ghost bt-sm rounded-btn'>
               About
             </Link>

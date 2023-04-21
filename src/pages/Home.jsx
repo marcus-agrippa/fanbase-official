@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom'; // Add this import
 import TeamSelector from '../components/teams/TeamSelector';
 import TeamData from '../components/teams/TeamData';
 import TeamFixtures from '../components/teams/TeamFixtures';
@@ -7,7 +9,6 @@ import TeamResults from '../components/teams/TeamResults';
 import NextFixture from '../components/teams/NextFixture';
 import TeamNews from '../components/teams/TeamNews';
 import InjuriesAndSuspensions from '../components/teams/InjuriesAndSuspensions';
-import TopPerformers from '../components/teams/TopPerformers';
 import TransferNews from '../components/teams/TransferNews';
 import ManagerDetails from '../components/teams/ManagerDetails';
 
@@ -24,7 +25,8 @@ const leagues = [
   { id: 179, name: "SPL" },
 ];
 
-const Home = () => {
+const Home = ({ setLeagueId, setTeamId }) => {
+  const navigate = useNavigate();
 
   const [teams, setTeams] = useState([]);
   const [selectedTeam, setSelectedTeam] = useState('');
@@ -58,13 +60,14 @@ const Home = () => {
   const handleLeagueSelect = (event) => {
     const leagueId = event.target.value;
     setSelectedLeague(leagueId);
+    setLeagueId(leagueId); // Add this line
     setSelectedTeam(''); // Reset the selected team when the league changes
   };
 
   const handleTeamSelect = (event) => {
     const teamId = parseInt(event.target.value);
     setSelectedTeam(teamId);
-  };
+  };  
 
   return (
     <div className="App mx-4 sm:mx-12">
@@ -120,6 +123,16 @@ const Home = () => {
           <div className="bg-gray-900 p-4 rounded shadow">
             {selectedTeam && <ManagerDetails teamId={selectedTeam} />}
           </div>
+        </div>
+      )}
+      {selectedTeam && (
+        <div>
+          <Link
+            to={`/players?leagueId=${selectedLeague}&teamId=${selectedTeam}`}
+            className="text-white bg-blue-500 px-4 py-2 rounded-md mt-4"
+          >
+            Go to Players Page
+          </Link>
         </div>
       )}
       <p>
