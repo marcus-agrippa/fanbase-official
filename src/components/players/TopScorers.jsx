@@ -17,8 +17,6 @@ const TopScorers = ({ leagueId }) => {
           },
         });
         const data = await response.json();
-        console.log('scorers', data)
-        console.log('team name',  data)
         setTopScorers(data.response.slice(0, 10));
       } catch (error) {
         console.error('Error fetching top scorers:', error);

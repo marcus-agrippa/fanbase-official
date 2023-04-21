@@ -17,7 +17,6 @@ const TopPassers = ({ leagueId }) => {
           },
         });
         const data = await response.json();
-        console.log('passes', data)
         setTopPassers(data.response.slice(0, 10));
       } catch (error) {
         console.error('Error fetching top passers:', error);

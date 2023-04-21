@@ -17,7 +17,6 @@ const TopShots = ({ leagueId }) => {
           },
         });
         const data = await response.json();
-        console.log('topScorers', data)
         setTopShots(data.response.slice(0, 10));
       } catch (error) {
         console.error('Error fetching top shots:', error);

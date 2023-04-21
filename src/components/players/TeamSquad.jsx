@@ -17,7 +17,6 @@ const TeamSquad = ({ teamId }) => {
           },
         });
         const data = await response.json();
-        console.log('Team Squad:', data)
         setSquad(data.response);
       } catch (error) {
         console.error('Error fetching team squad:', error);
