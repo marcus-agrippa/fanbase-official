@@ -6,4 +6,4 @@ It was made by a football fan for football fans, so if you have any suggestions 
 
 Version 1.0.0
 
-Created by @marcus-arippa
+Created by @marcus-agrippa
