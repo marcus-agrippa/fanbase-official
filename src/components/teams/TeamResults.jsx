@@ -38,7 +38,7 @@ const TeamResults = ({ teamId }) => {
 
   return (
     <div className="bg-dark-1 text-white p-4 rounded-lg">
-      <h1 className="text-3xl font-bold text-center my-4">Recent League Results</h1>
+      <h1 className="text-3xl font-bold text-center my-4">Recent Results</h1>
       <ul className="space-y-6">
         {teamResults.map((result, index) => (
           <li key={index} className="flex flex-col items-center justify-center space-y-2 md:flex-row md:space-y-0 border-b-2 md:border-b-0">
