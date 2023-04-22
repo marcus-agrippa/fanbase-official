@@ -147,10 +147,6 @@ const Home = ({ setLeagueId, setTeamId }) => {
           )}
         </div>
       )}
-      <p>
-        <span className="inline-block w-4 h-4mr-2 my-4"></span>
-        *Data is pulled from an external source and may not be 100% accurate. We are continually updating this app and the data received.
-      </p>
     </div>
     </SelectedTeamContext.Provider>
   );
