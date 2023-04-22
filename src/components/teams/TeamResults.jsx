@@ -53,8 +53,8 @@ const TeamResults = ({ teamId }) => {
         {teamResults.map((result, index) => (
           <li key={index} className="flex items-center justify-center space-y-2 flex-row space-y-0">
             <div className="flex items-center">
-              <span className="text-lg text-xl mr-4">{shortenTeamName(result.teams.home.name)}</span>
-              <img src={result.teams.home.logo} alt="home logo" className="w-7 h-7 m-auto mr-4" />
+              <span className="text-lg text-xl mr-3">{shortenTeamName(result.teams.home.name)}</span>
+              <img src={result.teams.home.logo} alt="home logo" className="w-7 h-7 m-auto mr-3" />
             </div>
             <div className="flex items-center">
               <div className="bg-blue-500 text-white font-bold text-lg md:text-xl p-2 border-r-2 border-blue-300 w-10 text-center">
@@ -64,9 +64,9 @@ const TeamResults = ({ teamId }) => {
                 {result.goals.away}
               </div>
             </div>
-            <div className="flex items-center pb-4 pb-0">
-              <img src={result.teams.away.logo} alt="away logo" className="w-7 h-7 m-auto ml-4 mr-4" />
-              <span className="text-lg text-xl mr-4">{shortenTeamName(result.teams.away.name)}</span>
+            <div className="flex items-center pb-4">
+              <img src={result.teams.away.logo} alt="away logo" className="w-7 h-7 m-auto ml-3" />
+              <span className="text-lg text-xl mr-3">{shortenTeamName(result.teams.away.name)}</span>
             </div>
           </li>
         ))}
