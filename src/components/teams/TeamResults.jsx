@@ -57,15 +57,15 @@ const TeamResults = ({ teamId }) => {
               <img src={result.teams.home.logo} alt="home logo" className="w-7 h-7 m-auto mr-3" />
             </div>
             <div className="flex items-center">
-              <div className="bg-blue-500 text-white font-bold text-lg md:text-xl p-2 border-r-2 border-blue-300 w-10 text-center">
+              <div className="bg-blue-500 text-white font-bold text-lg md:text-xl p-1 border-r-2 border-blue-300 w-8 text-center">
                 {result.goals.home}
               </div>
-              <div className="bg-blue-500 text-white font-bold text-lg md:text-xl p-2 w-10 text-center">
+              <div className="bg-blue-500 text-white font-bold text-lg md:text-xl p-1 w-8 text-center">
                 {result.goals.away}
               </div>
             </div>
             <div className="flex items-center pb-4">
-              <img src={result.teams.away.logo} alt="away logo" className="w-7 h-7 m-auto ml-3" />
+              <img src={result.teams.away.logo} alt="away logo" className="w-7 h-7 m-auto ml-3 mr-3" />
               <span className="text-lg text-xl mr-3">{shortenTeamName(result.teams.away.name)}</span>
             </div>
           </li>
