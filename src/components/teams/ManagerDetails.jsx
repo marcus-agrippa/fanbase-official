@@ -20,7 +20,7 @@ const ManagerDetails = ({ teamId }) => {
       const data = await response.json();
       const managerData = data.response[0];
       setManager(managerData);
-      setManagerId(managerData.id); // Set the manager ID
+      setManagerId(managerData.id);
     } catch (error) {
       console.error('Error fetching manager:', error);
     }

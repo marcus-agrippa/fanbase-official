@@ -55,7 +55,7 @@ const LeagueStandings = ({ leagueId, season, teamId }) => {
               <tr
                 key={index}
                 className={`${index % 2 === 0 ? "bg-gray-900" : "bg-gray-800"
-                  } ${team.team.id === parseInt(teamId) ? "bg-gray-500" : ""} ${(leagueId === "39" || leagueId === "140" || leagueId === "135" || leagueId === "61") && team.rank <= 4
+                  } ${team.team.id === parseInt(teamId) ? "bg-blue-900" : ""} ${(leagueId === "39" || leagueId === "140" || leagueId === "135" || leagueId === "61") && team.rank <= 4
                     ? "border-l-4 border-blue-500"
                     : leagueId === "78" && team.rank <= 3
                       ? "border-l-4 border-blue-500"

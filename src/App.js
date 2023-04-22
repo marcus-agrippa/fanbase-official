@@ -2,6 +2,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { usePageViews } from './hooks/usePageViews';
 import React, { useState } from 'react';
+import { SelectedTeamProvider } from "./context/SelectedTeamContext";
 import ReactGA from "react-ga4";
 import Home from "./pages/Home";
 import Players from "./pages/Players";
@@ -22,6 +23,7 @@ function App() {
 
   return (
     <Router>
+      <SelectedTeamProvider>
       <PageViews />
       <div className="flex flex-col justify-between h-screen">
         <Navbar />
@@ -46,6 +48,7 @@ function App() {
         </main>
         <Footer />
       </div>
+      </SelectedTeamProvider>
     </Router>
   );
 }

@@ -1,8 +1,18 @@
-import { GiSoccerBall } from 'react-icons/gi'
-import {Link} from 'react-router-dom'
-import PropTypes from 'prop-types'
+import React, { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { GiSoccerBall } from 'react-icons/gi';
+import {Link} from 'react-router-dom';
+import PropTypes from 'prop-types';
+import SelectedTeamContext from '../../context/SelectedTeamContext';
 
 const Navbar = ({ title }) => {
+  const { selectedLeague, selectedTeam } = useContext(SelectedTeamContext);
+  const navigate = useNavigate();
+
+  const navigateToPlayers = () => {
+    navigate('/players');
+  };
+
   return (
     <nav className='navbar mb-12 shadow-lg bg-neutral text-neutral-content'>
       <div className='container mx-auto'>
@@ -23,7 +33,14 @@ const Navbar = ({ title }) => {
             <Link to='/news' className='btn btn-ghost bt-sm rounded-btn'>
               News
             </Link> */}
-            <Link to='/players' className='btn btn-ghost bt-sm rounded-btn'>
+            <Link
+              to={`/players${
+                selectedLeague && selectedTeam
+                  ? `?leagueId=${selectedLeague}&teamId=${selectedTeam}`
+                  : ''
+              }`}
+              className='btn btn-ghost bt-sm rounded-btn'
+            >
               Players
             </Link>
             <Link to='/about' className='btn btn-ghost bt-sm rounded-btn'>
