@@ -1,64 +1,90 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { GiSoccerBall } from 'react-icons/gi';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import SelectedTeamContext from '../../context/SelectedTeamContext';
 
 const Navbar = ({ title }) => {
   const { selectedLeague, selectedTeam } = useContext(SelectedTeamContext);
   const navigate = useNavigate();
+  const [menuOpen, setMenuOpen] = useState(false);
 
-  const navigateToPlayers = () => {
-    navigate('/players');
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen);
   };
 
   return (
-    <nav className='navbar mb-12 shadow-lg bg-neutral text-neutral-content'>
-      <div className='container mx-auto'>
-        <div className='flex-1 px-2 mx-2'>
-          <GiSoccerBall className='inline pr-2 text-5xl'/>
-          <Link to='/' className='text-1xl font-bold align-middle md:text-2xl'>
+    <nav className="navbar mb-12 shadow-lg bg-neutral text-neutral-content">
+      <div className="container mx-auto">
+        <div className="flex-1 px-2 mx-2">
+          <GiSoccerBall className="inline pr-2 text-5xl" />
+          <Link to="/" className="text-1xl font-bold align-middle md:text-2xl">
             {title}
           </Link>
         </div>
-        <div className="flex-2 px-2 mx-2">
-          <div className="flex justify-end">
-            <Link to='/' className='btn btn-ghost bt-sm rounded-btn'>
+        <button
+          className="block md:hidden px-2 mx-2"
+          onClick={toggleMenu}
+          aria-label="Toggle menu"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            className="h-6 w-6"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M4 6h16M4 12h16M4 18h16"
+            />
+          </svg>
+        </button>
+        <div
+          className={`${
+            menuOpen ? 'block' : 'hidden'
+          } absolute top-full mt-1 w-full md:relative md:w-auto md:static bg-neutral md:flex md:flex-2 px-2 mx-2`}
+        >
+          <div className="flex flex-col md:flex-row justify-end w-full md:items-center md:w-auto">
+            <Link
+              to="/"
+              className="btn btn-ghost bt-sm rounded-btn block md:inline-block"
+            >
               Home
             </Link>
-            {/* <Link to='/stats' className='btn btn-ghost bt-sm rounded-btn'>
-              Stats
-            </Link>
-            <Link to='/news' className='btn btn-ghost bt-sm rounded-btn'>
-              News
-            </Link> */}
             <Link
               to={`/players${
                 selectedLeague && selectedTeam
                   ? `?leagueId=${selectedLeague}&teamId=${selectedTeam}`
                   : ''
               }`}
-              className='btn btn-ghost bt-sm rounded-btn'
+              className="btn btn-ghost bt-sm rounded-btn block md:inline-block"
             >
               Players
             </Link>
-            <Link to='/about' className='btn btn-ghost bt-sm rounded-btn'>
+            <Link
+              to="/about"
+              className="btn btn-ghost bt-sm rounded-btn block md:inline-block"
+            >
               About
             </Link>
           </div>
         </div>
       </div>
     </nav>
-  )
-}
+  );
+};
 
 Navbar.defaultProps = {
   title: 'Fanbase',
-}
+};
 
 Navbar.propTypes = {
-  title: PropTypes.string
-}
+  title: PropTypes.string,
+};
 
-export default Navbar
+export default Navbar;
+
