@@ -27,6 +27,16 @@ const TeamResults = ({ teamId }) => {
     }
   }, [teamId]);
 
+  const shortenTeamName = (teamName) => {
+    const nameParts = teamName.split(' ');
+    if (nameParts.length === 1) {
+      return nameParts[0].slice(0, 3).toUpperCase();
+    } else if (nameParts.length > 1) {
+      return (nameParts[0][0] + nameParts[1].slice(0, 2)).toUpperCase();
+    }
+    return teamName.toUpperCase();
+  };
+
   const formatDate = (dateString) => {
     const date = new Date(dateString);
     const day = String(date.getDate()).padStart(2, '0');
@@ -39,18 +49,24 @@ const TeamResults = ({ teamId }) => {
   return (
     <div className="bg-dark-1 text-white p-4 rounded-lg">
       <h1 className="text-3xl font-bold text-center my-4">Recent Results</h1>
-      <ul className="space-y-6">
+      <ul className="space-y-6 mt-10">
         {teamResults.map((result, index) => (
-          <li key={index} className="flex flex-col items-center justify-center space-y-2 md:flex-row md:space-y-0 border-b-2 md:border-b-0">
+          <li key={index} className="flex items-center justify-center space-y-2 flex-row space-y-0 border-b-2 border-b-0">
             <div className="flex items-center">
+              <span className="text-lg text-xl mr-4">{shortenTeamName(result.teams.home.name)}</span>
               <img src={result.teams.home.logo} alt="home logo" className="w-7 h-7 m-auto mr-4" />
-              <span className="text-lg md:text-xl mr-4">{result.teams.home.name}</span>
-              <span className="font-bold text-lg md:text-xl">{result.goals.home}</span>
             </div>
-            <div className="flex items-center pb-4 md:pb-0">
+            <div className="flex items-center">
+              <div className="bg-blue-500 text-white font-bold text-lg md:text-xl p-3 border-r-2 border-blue-300 w-16 text-center">
+                {result.goals.home}
+              </div>
+              <div className="bg-blue-500 text-white font-bold text-lg md:text-xl p-3 w-16 text-center">
+                {result.goals.away}
+              </div>
+            </div>
+            <div className="flex items-center pb-4 pb-0">
               <img src={result.teams.away.logo} alt="away logo" className="w-7 h-7 m-auto ml-4 mr-4" />
-              <span className="text-lg md:text-xl mr-4">{result.teams.away.name}</span>
-              <span className="font-bold text-lg md:text-xl">{result.goals.away}</span>
+              <span className="text-lg text-xl mr-4">{shortenTeamName(result.teams.away.name)}</span>
             </div>
           </li>
         ))}

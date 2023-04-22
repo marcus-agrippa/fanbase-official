@@ -28,6 +28,16 @@ const NextFixture = ({ teamId }) => {
     }
   }, [teamId]);
 
+  const shortenTeamName = (teamName) => {
+    const nameParts = teamName.split(' ');
+    if (nameParts.length === 1) {
+      return nameParts[0].slice(0, 3).toUpperCase();
+    } else if (nameParts.length > 1) {
+      return (nameParts[0][0] + nameParts[1].slice(0, 2)).toUpperCase();
+    }
+    return teamName.toUpperCase();
+  };
+
   const formatDate = (dateString) => {
     const date = new Date(dateString);
     const day = String(date.getDate()).padStart(2, '0');
@@ -54,10 +64,10 @@ const NextFixture = ({ teamId }) => {
   return (
     <div className="bg-dark-1 text-white p-4 rounded-lg">
       <h1 className="text-3xl font-bold text-center my-4">Next Fixture</h1>
-      <div className="flex justify-center items-center mb-4">
+      <div className="flex justify-center items-center mt-10">
         <img src={nextFixture.teams.home.logo} alt="home logo" className="w-10 h-10 m-auto mr-4" />
-        <p className="text-xl">
-          {nextFixture.teams.home.name} vs {nextFixture.teams.away.name}
+        <p className="text-xl flex flex-col">
+        {shortenTeamName(nextFixture.teams.home.name)} vs {shortenTeamName(nextFixture.teams.away.name)}
         </p>
         <img src={nextFixture.teams.away.logo} alt="away logo" className="w-10 h-10 m-auto ml-4" />
       </div>

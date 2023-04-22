@@ -26,22 +26,41 @@ const TopYellowCards = ({ leagueId }) => {
     fetchTopYellowCards();
   }, [leagueId]);
 
+  const shortenTeamName = (teamName) => {
+    const nameParts = teamName.split(' ');
+    if (nameParts.length === 1) {
+      return nameParts[0].slice(0, 3).toUpperCase();
+    } else if (nameParts.length > 1) {
+      return (nameParts[0][0] + nameParts[1].slice(0, 2)).toUpperCase();
+    }
+    return teamName.toUpperCase();
+  };
+
   return (
     <div className="bg-dark-1 text-white p-4 rounded-lg">
       <h1 className="text-3xl font-bold text-center my-4">Most Yellow Cards</h1>
-    {topYellowCards.map((player, index) => (
-      <div key={index}>
-        <div className='flex flew-row justify-start items-center gap-2 p-4'>
-          <img src={player?.player?.photo} alt="" className='w-12 h-12 rounded-full' />
-          <img src={player?.statistics?.[0]?.team?.logo} alt="" className='w-7 h-7' />
-          <p>
-            {player?.player?.name} - {player?.statistics?.[0]?.team?.name}:{' '}
-            - {player?.statistics?.[0]?.cards?.yellow} yellow cards
-          </p>
+      {topYellowCards.map((player, index) => (
+        <div key={index}>
+          <div className={`flex flex-row justify-start items-center gap-2 p-4 ${index === 0 ? 'bg-blue-500' : ''}`}>
+            {index === 0 ? (
+              <img src={player?.player?.photo} alt="" className='hidden sm:block w-12 h-12 rounded-full' />
+            ) : (
+              <span className="text-xl font-bold">{index + 1}.</span>
+            )}
+            <img src={player?.statistics?.[0]?.team?.logo} alt="" className='w-7 h-7' />
+            <div>
+              <p className="font-bold">
+                {player?.player?.name}
+              </p>
+              <p className="text-sm">
+                {shortenTeamName(player?.statistics?.[0]?.team?.name)}
+              </p>
+            </div>
+            <p className="ml-auto">{player?.statistics?.[0]?.cards?.yellow} yellow cards</p>
+          </div>
         </div>
-      </div>
-    ))}
-  </div>
+      ))}
+    </div>
   );
 };
 

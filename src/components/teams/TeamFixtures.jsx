@@ -17,6 +17,7 @@ const TeamFixtures = ({ teamId }) => {
         }
       })
         const data = await response.json();
+        console.log('fixtures', data)
         const teamFixtureArray = data.response.map(item => item); // Extract the fixture objects from the response array
         setFixtureData(teamFixtureArray);
       } catch (error) {
@@ -38,7 +39,7 @@ const TeamFixtures = ({ teamId }) => {
     const minutes = String(date.getMinutes()).padStart(2, '0');
     const amPm = date.getHours() >= 12 ? 'PM' : 'AM';
   
-    return `${day}-${month}-${year}, ${hours}:${minutes} ${amPm}`;
+    return `${day}-${month}-${year} | ${hours}:${minutes} ${amPm}`;
   };  
 
   const handleLoadMoreFixtures = () => {
@@ -48,29 +49,47 @@ const TeamFixtures = ({ teamId }) => {
   // Filter fixtures to only include upcoming fixtures
   const upcomingFixtures = teamFixtures.filter(fixture => new Date(fixture.fixture.date) >= new Date());
 
+  const shortenTeamName = (teamName) => {
+    const nameParts = teamName.split(' ');
+    if (nameParts.length === 1) {
+      return nameParts[0].slice(0, 3).toUpperCase();
+    } else if (nameParts.length > 1) {
+      return (nameParts[0][0] + nameParts[1].slice(0, 2)).toUpperCase();
+    }
+    return teamName.toUpperCase();
+  };
+
   return (
 <div className="bg-dark-1 text-white p-4 rounded-lg">
   <h1 className="text-3xl font-bold text-center my-4">Upcoming Fixtures</h1>
-  <ul className="space-y-10">
+  <ul className="space-y-10 mt-10">
     {upcomingFixtures.slice(0, fixturesToShow).map((fixture, index) => (
-      <li key={index} className="flex items-center justify-center space-y-2 flex-col md:space-y-0">
-        <div className='flex flex-row'>
-          <div className="flex items-center flex-row">
-            <img src={fixture.teams.home.logo} alt="home logo" className="w-10 h-10 m-auto md:mr-4" />
-            {/* <span className="text-lg md:text-xl">{fixture.teams.home.name}</span> */}
-          </div>
-          <span className="mx-2 text-lg md:text-xl">vs</span>
-          <div className="flex items-center flex-row">
-            {/* <span className="text-lg md:text-xl">{fixture.teams.away.name}</span> */}
-            <img src={fixture.teams.away.logo} alt="away logo" className="w-10 h-10 m-auto md:ml-4 md:mr-4" />
-          </div>
+      <li key={index} className="flex items-center justify-center space-y-2 flex-row space-y-0 border-b-2 border-b-0">
+        <div className='flex flex-col'>
+        <h3 className="text-xl my-2">{formatDate(fixture.fixture.date)}</h3>
+        <div>
+          <h4 className="text-sm px-2 py-1 inline bg-accent">{fixture.league.name}</h4>
         </div>
-        <p className="text-sm pt-5 md:text-base">{formatDate(fixture.fixture.date)}</p>
+          <div className='flex justify-center items-center m-4'>
+            <div className="flex items-center">
+              <span className="text-lg text-xl mr-2">{shortenTeamName(fixture.teams.home.name)}</span>
+              <img src={fixture.teams.home.logo} alt="home logo" className="w-10 h-10 m-auto" />
+            </div>
+            <span className="text-white font-bold text-xl p-3 w-16 text-center">vs</span>
+            <div className="flex items-center">
+              <img src={fixture.teams.away.logo} alt="away logo" className="w-10 h-10 m-auto" />
+              <span className="text-lg text-xl ml-2">{shortenTeamName(fixture.teams.away.name)}</span>
+            </div>
+          </div>
+          {/* <div className="flex items-center">
+              
+          </div> */}
+        </div>
       </li>
     ))}
   </ul>
   {fixturesToShow < upcomingFixtures.length && (
-    <button onClick={handleLoadMoreFixtures} className="bg-indigo-500 text-white px-4 py-2 rounded mt-4 block mx-auto">
+    <button onClick={handleLoadMoreFixtures} className="bg-indigo-500 text-white py-2 px-4 rounded mt-4 block mx-auto">
       More Fixtures
     </button>
   )}

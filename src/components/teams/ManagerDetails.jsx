@@ -64,7 +64,7 @@ const ManagerDetails = ({ teamId }) => {
     <div className="bg-dark-1 text-white p-4 rounded-lg">
       <h1 className="text-3xl font-bold text-center my-4">Manager Information</h1>
       {manager && (
-        <div className="flex flex-col items-center text-center">
+        <div className="flex flex-col items-center text-center mt-10">
           <img
             src={manager.photo || "/default-photo.png"}
             alt={`Photo of ${manager.name}`}

@@ -35,7 +35,7 @@ const TransferNews = ({ teamId }) => {
   return (
     <div className="bg-dark-1 text-white p-4 rounded-lg">
       <h1 className="text-3xl font-bold text-center my-4">Recent Transfers</h1>
-      <div className="overflow-x-auto">
+      <div className="overflow-x-auto mt-10">
       <table className="w-full table-auto">
         <thead>
           <tr>
