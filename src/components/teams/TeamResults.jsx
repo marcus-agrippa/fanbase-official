@@ -64,7 +64,7 @@ const TeamResults = ({ teamId }) => {
                 {result.goals.away}
               </div>
             </div>
-            <div className="flex items-center pb-4">
+            <div className="flex items-center">
               <img src={result.teams.away.logo} alt="away logo" className="w-7 h-7 m-auto ml-3 mr-3" />
               <span className="text-lg text-xl mr-3">{shortenTeamName(result.teams.away.name)}</span>
             </div>
