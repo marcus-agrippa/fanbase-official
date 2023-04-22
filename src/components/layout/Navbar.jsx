@@ -47,12 +47,12 @@ const Navbar = ({ title }) => {
         <div
             className={`${
               menuOpen ? 'block' : 'hidden'
-            } absolute top-full left-0 w-screen md:relative md:w-auto md:static bg-neutral md:flex md:flex-2 border-t-2 border-gray-300 z-10`}
+            } absolute top-full left-0 w-screen md:relative md:w-auto md:static bg-neutral md:flex md:flex-2 z-10`}
         >
           <div className="flex flex-col md:flex-row justify-end items-center w-full md:items-center md:w-auto">
             <Link
               to="/"
-              className="btn btn-ghost flex items-center bt-sm rounded-btn block md:inline-block"
+              className="btn btn-ghost flex bt-sm rounded-btn block"
             >
               Home
             </Link>
@@ -62,13 +62,13 @@ const Navbar = ({ title }) => {
                   ? `?leagueId=${selectedLeague}&teamId=${selectedTeam}`
                   : ''
               }`}
-              className="btn btn-ghost flex items-center bt-sm rounded-btn block md:inline-block"
+              className="btn btn-ghost flex bt-sm rounded-btn block"
             >
               Players
             </Link>
             <Link
               to="/about"
-              className="btn btn-ghost flex items-center bt-sm rounded-btn block md:inline-block"
+              className="btn btn-ghost flex bt-sm rounded-btn block"
             >
               About
             </Link>
