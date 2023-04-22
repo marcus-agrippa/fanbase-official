@@ -16,7 +16,7 @@ const Navbar = ({ title }) => {
 
   return (
     <nav className="navbar mb-12 shadow-lg bg-neutral text-neutral-content">
-      <div className="container mx-auto">
+      <div className="container mx-auto relative">
         <div className="flex-1 px-2 mx-2">
           <GiSoccerBall className="inline pr-2 text-5xl" />
           <Link to="/" className="text-1xl font-bold align-middle md:text-2xl">
@@ -44,9 +44,9 @@ const Navbar = ({ title }) => {
           </svg>
         </button>
         <div
-          className={`${
-            menuOpen ? 'block' : 'hidden'
-          } absolute top-full mt-1 w-full md:relative md:w-auto md:static bg-neutral md:flex md:flex-2 px-2 mx-2`}
+            className={`${
+              menuOpen ? 'block' : 'hidden'
+            } absolute top-full left-0 mt-1 w-screen md:relative md:w-auto md:static bg-neutral md:flex md:flex-2 px-2 mx-2 z-10`}
         >
           <div className="flex flex-col md:flex-row justify-end w-full md:items-center md:w-auto">
             <Link
@@ -87,4 +87,3 @@ Navbar.propTypes = {
 };
 
 export default Navbar;
-

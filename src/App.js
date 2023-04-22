@@ -26,7 +26,7 @@ function App() {
       <SelectedTeamProvider>
       <PageViews />
       <div className="flex flex-col justify-between h-screen">
-        <Navbar />
+        <Navbar/>
         <main className="mx-auto px-3 pb-12">
           <Routes>
             <Route path="/" element={<Home />} />
