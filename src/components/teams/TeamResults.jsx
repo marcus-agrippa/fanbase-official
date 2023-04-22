@@ -57,10 +57,10 @@ const TeamResults = ({ teamId }) => {
               <img src={result.teams.home.logo} alt="home logo" className="w-7 h-7 m-auto mr-4" />
             </div>
             <div className="flex items-center">
-              <div className="bg-blue-500 text-white font-bold text-lg md:text-xl p-3 border-r-2 border-blue-300 w-10 text-center">
+              <div className="bg-blue-500 text-white font-bold text-lg md:text-xl p-2 border-r-2 border-blue-300 w-10 text-center">
                 {result.goals.home}
               </div>
-              <div className="bg-blue-500 text-white font-bold text-lg md:text-xl p-3 w-10 text-center">
+              <div className="bg-blue-500 text-white font-bold text-lg md:text-xl p-2 w-10 text-center">
                 {result.goals.away}
               </div>
             </div>
