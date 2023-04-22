@@ -64,7 +64,7 @@ const TeamFixtures = ({ teamId }) => {
   <h1 className="text-3xl font-bold text-center my-4">Upcoming Fixtures</h1>
   <ul className="space-y-10 mt-10">
     {upcomingFixtures.slice(0, fixturesToShow).map((fixture, index) => (
-      <li key={index} className="flex items-center justify-center space-y-2 flex-row space-y-0 border-b-2 border-b-0">
+      <li key={index} className="flex items-center justify-center space-y-2 flex-row space-y-0">
         <div className='flex flex-col'>
         <h3 className="text-xl my-2">{formatDate(fixture.fixture.date)}</h3>
         <div>

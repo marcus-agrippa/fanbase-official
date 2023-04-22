@@ -51,7 +51,7 @@ const TeamResults = ({ teamId }) => {
       <h1 className="text-3xl font-bold text-center my-4">Recent Results</h1>
       <ul className="space-y-6 mt-10">
         {teamResults.map((result, index) => (
-          <li key={index} className="flex items-center justify-center space-y-2 flex-row space-y-0 border-b-2 border-b-0">
+          <li key={index} className="flex items-center justify-center space-y-2 flex-row space-y-0">
             <div className="flex items-center">
               <span className="text-lg text-xl mr-4">{shortenTeamName(result.teams.home.name)}</span>
               <img src={result.teams.home.logo} alt="home logo" className="w-7 h-7 m-auto mr-4" />
