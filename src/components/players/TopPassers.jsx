@@ -40,23 +40,34 @@ const TopPassers = ({ leagueId }) => {
     <div className="bg-dark-1 text-white p-4 rounded-lg">
       <h1 className="text-3xl font-bold text-center my-4">Top Passers</h1>
       {topPassers.map((player, index) => (
-        <div key={index}>
-          <div className={`flex flex-row justify-start items-center gap-2 p-4 ${index === 0 ? 'bg-blue-500' : ''}`}>
-            {index === 0 ? (
-              <img src={player?.player?.photo} alt="" className='hidden sm:block w-12 h-12 rounded-full' />
-            ) : (
-              <span className="text-xl font-bold">{index + 1}.</span>
+          <div key={index} className={`p-4 ${index === 0 ? 'bg-blue-500' : ''}`}>
+          <div className="flex flew-row justify-start items-center gap-2">
+            <span className="font-bold text-lg md:text-xl mr-4">
+              {index + 1}.
+            </span>
+            {index === 0 && (
+              <img
+                src={player?.player?.photo}
+                alt=""
+                className="hidden sm:block w-12 sm:h-12 rounded-full mr-4"
+              />
             )}
-            <img src={player?.statistics?.[0]?.team?.logo} alt="" className='w-7 h-7' />
-            <div>
-              <p className="font-bold">
-                {player?.player?.name}
-              </p>
-              <p className="text-sm">
-                {shortenTeamName(player?.statistics?.[0]?.team?.name)}
-              </p>
+            <div className="flex items-center">
+              <img
+                src={player?.statistics?.[0]?.team?.logo}
+                alt=""
+                className="w-7 h-7 mr-4"
+              />
+              <div>
+                <span className="font-semibold">{player?.player?.name}</span>
+                <div className="text-xs font-semibold text-gray-300">
+                  {shortenTeamName(player?.statistics?.[0]?.team?.name)}
+                </div>
+              </div>
             </div>
-            <p className="ml-auto">{player?.statistics[0]?.passes?.total} passes</p>
+            <span className="ml-auto font-semibold">
+            {player?.statistics[0]?.passes?.total} passes
+            </span>
           </div>
         </div>
       ))}

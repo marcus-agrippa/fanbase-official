@@ -38,7 +38,7 @@ const Players = () => {
   
   return (
     <div>
-      <h1 className="text-3xl font-bold text-white text-center my-10">League Statistics</h1>
+      <h1 className="text-3xl font-bold text-white text-center my-10">League Player Statistics</h1>
       <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-4 mt-4'>
         <div className='bg-gray-900 p-4 rounded shadow'>
           <TopScorers leagueId={leagueId} />

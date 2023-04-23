@@ -66,9 +66,9 @@ const TeamFixtures = ({ teamId }) => {
     {upcomingFixtures.slice(0, fixturesToShow).map((fixture, index) => (
       <li key={index} className="flex items-center justify-center space-y-2 flex-row space-y-0">
         <div className='flex flex-col'>
-        <h3 className="text-xl my-2">{formatDate(fixture.fixture.date)}</h3>
-        <div>
-          <h4 className="text-sm px-2 py-1 inline bg-accent">{fixture.league.name}</h4>
+        <h3 className="text-xl my-2 text-center">{formatDate(fixture.fixture.date)}</h3>
+        <div className="flex justify-center items-center">
+          <h4 className="text-sm px-2 py-1 inline-block bg-accent">{fixture.league.name}</h4>
         </div>
           <div className='flex justify-center items-center m-4'>
             <div className="flex items-center">

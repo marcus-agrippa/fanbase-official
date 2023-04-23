@@ -66,7 +66,7 @@ const TopRedCards = ({ leagueId }) => {
               </div>
             </div>
             <span className="ml-auto font-semibold">
-              {player?.statistics?.[0]?.cards?.red} red cards
+              {player?.statistics?.[0]?.cards?.red} cards
             </span>
           </div>
         </div>

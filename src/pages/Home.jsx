@@ -19,11 +19,15 @@ const BASE_URL = 'https://v3.football.api-sports.io';
 
 const leagues = [
   { id: 39, name: "Premier League" },
-  { id: 140, name: "La Liga" },
-  { id: 135, name: "Serie A" },
-  { id: 61, name: "Ligue 1" },
-  { id: 78, name: "Bundesliga" },
-  { id: 179, name: "SPL" },
+  { id: 40, name: "English League Championship" },
+  { id: 140, name: "Spanish La Liga" },
+  { id: 135, name: "Italian Serie A" },
+  { id: 61, name: "French Ligue 1" },
+  { id: 78, name: "German Bundesliga" },
+  { id: 179, name: "Scottish Premiership" },
+  { id: 88, name: "Dutch Eredivisie" },
+  { id: 94, name: "Liga Portugal" },
+  { id: 144, name: "Belgian Pro League" },
 ];
 
 const Home = ({ setLeagueId, setTeamId }) => {
