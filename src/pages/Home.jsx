@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom'; // Add this import
+import { useNavigate } from 'react-router-dom';
 import SelectedTeamContext from '../context/SelectedTeamContext';
 import TeamSelector from '../components/teams/TeamSelector';
 import TeamData from '../components/teams/TeamData';
@@ -13,13 +13,16 @@ import InjuriesAndSuspensions from '../components/teams/InjuriesAndSuspensions';
 import TransferNews from '../components/teams/TransferNews';
 import ManagerDetails from '../components/teams/ManagerDetails';
 import Players from './Players';
+import { clubsTwitterHandles } from '../data/clubsTwitterHandles';
+import TeamTwitter from '../components/teams/TeamTwitter';
+
 
 const API_KEY = process.env.REACT_APP_FOOTBALL_API_TOKEN;
 const BASE_URL = 'https://v3.football.api-sports.io';
 
 const leagues = [
   { id: 39, name: "Premier League" },
-  { id: 40, name: "English League Championship" },
+  { id: 40, name: "English Championship" },
   { id: 140, name: "Spanish La Liga" },
   { id: 135, name: "Italian Serie A" },
   { id: 61, name: "French Ligue 1" },
@@ -32,6 +35,7 @@ const leagues = [
 
 const Home = ({ setLeagueId, setTeamId }) => {
   const navigate = useNavigate();
+  const [selectedClubTwitterHandle, setSelectedClubTwitterHandle] = useState('');
 
   const [teams, setTeams] = useState([]);
   const { selectedLeague, setSelectedLeague, selectedTeam, setSelectedTeam } = useContext(SelectedTeamContext);
@@ -72,6 +76,16 @@ const Home = ({ setLeagueId, setTeamId }) => {
   const handleTeamSelect = (event) => {
     const teamId = parseInt(event.target.value);
     setSelectedTeam(teamId);
+    localStorage.setItem("selectedTeam", teamId); // Save the value to local storage
+
+    // Find the corresponding Twitter handle of the selected club
+    const selectedClubTwitter = clubsTwitterHandles.find(club => club.id === teamId);
+    if (selectedClubTwitter) {
+      setSelectedClubTwitterHandle(selectedClubTwitter.twitterHandle);
+    } else {
+      setSelectedClubTwitterHandle('');
+    }
+
     localStorage.setItem("selectedTeam", teamId); // Save the value to local storage
   };  
 
@@ -114,20 +128,20 @@ const Home = ({ setLeagueId, setTeamId }) => {
             <TeamData teamId={selectedTeam} />
           </div>
           <div className="bg-gray-900 p-4 rounded shadow">
+            <NextFixture teamId={selectedTeam} />
+          </div>
+          <div className="bg-gray-900 p-4 rounded shadow">
+            <TeamTwitter twitterHandle={selectedClubTwitterHandle} />
+          </div>
+          <div className="bg-gray-900 p-4 rounded shadow">
+            <LeagueStandings leagueId={selectedLeague} season={2022} teamId={selectedTeam} />
+          </div>
+          <div className="bg-gray-900 p-4 rounded shadow">
             <TeamFixtures teamId={selectedTeam} />
           </div>
           <div className="bg-gray-900 p-4 rounded shadow">
             <TeamResults teamId={selectedTeam} />
           </div>
-          <div className="bg-gray-900 p-4 rounded shadow">
-            <NextFixture teamId={selectedTeam} />
-          </div>
-          <div className="bg-gray-900 p-4 rounded shadow">
-            <LeagueStandings leagueId={selectedLeague} season={2022} teamId={selectedTeam} />
-          </div>
-          {/* <div className="bg-gray-900 p-4 rounded shadow">
-            {selectedTeam && <TeamNews teamName={teams.find((team) => team.id === parseInt(selectedTeam)).name} />}
-          </div> */}
           <div className="bg-gray-900 p-4 rounded shadow">
             {selectedTeam && <InjuriesAndSuspensions teamId={selectedTeam} season={2022} />}
           </div>

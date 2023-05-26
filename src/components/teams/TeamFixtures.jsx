@@ -66,11 +66,11 @@ const TeamFixtures = ({ teamId }) => {
     {upcomingFixtures.slice(0, fixturesToShow).map((fixture, index) => (
       <li key={index} className="flex items-center justify-center space-y-2 flex-row space-y-0 bg-gray-800 rounded-lg">
         <div className='flex flex-col'>
-        <h3 className="text-xl my-2 text-center">{formatDate(fixture.fixture.date)}</h3>
-        <div className="flex justify-center items-center">
-          <h4 className="text-sm px-2 py-1 inline-block bg-accent">{fixture.league.name}</h4>
-        </div>
-          <div className='flex justify-center items-center m-4'>
+          <h3 className="text-xl my-2 text-center">{formatDate(fixture.fixture.date)}</h3>
+          <div className="flex justify-center items-center">
+            <h4 className="text-sm px-2 py-1 inline-block bg-accent my-3">{fixture.league.name}</h4>
+          </div>
+          <div className='flex justify-center items-center my-3'>
             <div className="flex items-center">
               <span className="text-lg text-xl mr-2">{shortenTeamName(fixture.teams.home.name)}</span>
               <img src={fixture.teams.home.logo} alt="home logo" className="w-10 h-10 m-auto" />
@@ -81,15 +81,12 @@ const TeamFixtures = ({ teamId }) => {
               <span className="text-lg text-xl ml-2">{shortenTeamName(fixture.teams.away.name)}</span>
             </div>
           </div>
-          {/* <div className="flex items-center">
-              
-          </div> */}
         </div>
       </li>
     ))}
   </ul>
   {fixturesToShow < upcomingFixtures.length && (
-    <button onClick={handleLoadMoreFixtures} className="bg-indigo-500 text-white py-2 px-4 rounded mt-4 block mx-auto">
+    <button onClick={handleLoadMoreFixtures} className="bg-indigo-500 text-white py-2 px-4 rounded mt-10 block mx-auto">
       More Fixtures
     </button>
   )}

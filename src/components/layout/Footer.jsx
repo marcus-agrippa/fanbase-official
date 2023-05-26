@@ -2,7 +2,7 @@ import React from 'react'
 import { SiBuymeacoffee } from 'react-icons/si'
 
 const Footer = () => {
-  const footerYear = new Date().getFullYear()
+  const footerYear = new Date().getFullYear() // Uses JS method to return Date instance according to local time.
 
   return (
     <footer className='footer p-10 bg-gray-700 text-primary-content footer-center'>

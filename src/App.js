@@ -7,11 +7,12 @@ import ReactGA from "react-ga4";
 import Home from "./pages/Home";
 import Players from "./pages/Players";
 import Stats from "./pages/Stats";
-import News from "./pages/News";
+import NewsPage from "./news/NewsPage";
 import About from "./pages/About";
 import NotFound from "./pages/NotFound";
 import Navbar from "./components/layout/Navbar";
 import Footer from "./components/layout/Footer";
+import ArticlePage from "./news/ArticlePage";
 
 const trackingId = process.env.REACT_APP_GOOGLE_ANALYTICS_TRACKING_ID;
 
@@ -40,8 +41,9 @@ function App() {
                 />
               }
             />
-            <Route path="/news" element={<News />} />
+            <Route path="/news" element={<NewsPage />} />
             <Route path="/about" element={<About />} />
+            <Route path="/article/:id" element={<ArticlePage />} />
             <Route path="/notfound" element={<NotFound />} />
             <Route path="/*" element={<NotFound />} />
           </Routes>

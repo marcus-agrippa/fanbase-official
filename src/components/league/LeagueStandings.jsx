@@ -1,26 +1,32 @@
 import React, { useState, useEffect } from 'react';
-import clsx from 'clsx';
+import clsx from 'clsx'; // Imported to constuct className strings conditionally
 
 const BASE_URL = 'https://v3.football.api-sports.io';
 
+// The league IDs along with min max are used to identify places in a table for each unique league ID
+// The min max value will determine the border on places in the table
 const leagueBorders = (standingsLength) => ({
-  "39": {
+  // Premier League
+  "39" : { 
     clGroupStage: { min: 1, max: 4 },
     elGroupStage: { min: 5, max: 5 },
     relegation: { min: standingsLength - 2, max: standingsLength },
   },
-  "40": {
+  // English Championship
+  "40": { 
     promotion: { min: 1, max: 2 },
     promotionPlayOff: { min: 3, max: 6 },
     relegation: { min: standingsLength - 2, max: standingsLength },
   },
-  "61": {
+  // French Ligue 1
+  "61": { 
     clGroupStage: { min: 1, max: 2 },
     clQualifiers: { min: 3, max: 3 },
     elGroupStage: { min: 4, max: 4 },
     ecQualifiers: { min: 5, max: 5 },
     relegation: { min: standingsLength - 3, max: standingsLength },
   },
+  // Bundesliga
   "78": {
     clGroupStage: { min: 1, max: 4 },
     elGroupStage: { min: 5, max: 5 },
@@ -28,38 +34,42 @@ const leagueBorders = (standingsLength) => ({
     relegationPlayOffs: { min: standingsLength - 2, max: standingsLength - 2 },
     relegation: { min: standingsLength - 1, max: standingsLength },
   },
-  "88": {
+  // Dutch Eredivisie
+  "88": { 
     clGroupStage: { min: 1, max: 1 },
     clQualifiers: { min: 2, max: 2 },
     ecQualifiers: { min: 3, max: 3 },
     relegationPlayOffs: { min: standingsLength - 2, max: standingsLength - 2 },
     relegation: { min: standingsLength - 1, max: standingsLength },
-    },
-  "94": {
+  },
+  // Liga Portugal
+  "94": { 
     clGroupStage: { min: 1, max: 2 },
     clQualifiers: { min: 3, max: 3 },
     ecQualifiers: { min: 4, max: 5 },
     relegationPlayOffs: { min: standingsLength - 2, max: standingsLength - 2 },
     relegation: { min: standingsLength - 1, max: standingsLength },
-    },
-  "135": {
+  },
+  // Italian Serie A
+  "135": { 
     clGroupStage: { min: 1, max: 4 },
     elGroupStage: { min: 5, max: 5 },
     ecQualifiers: { min: 6, max: 6 },
     relegation: { min: standingsLength - 2, max: standingsLength },
-    },
-  "140": {
+  },
+  // Spanish La Liga
+  "140": { 
     clGroupStage: { min: 1, max: 4 },
     elGroupStage: { min: 5, max: 5 },
     ecQualifiers: { min: 6, max: 6 },
     relegation: { min: standingsLength - 2, max: standingsLength },
-    },
+  },
   // Belgian Pro League
   "144": {
     championshipRound: { min: 1, max: 4 },
     elPlayOffs: { min: 5, max: 8 },
     relegation: { min: standingsLength - 2, max: standingsLength },
-    },
+  }, 
 });
 
 const LeagueStandings = ({ leagueId, season, teamId }) => {
@@ -197,14 +207,14 @@ const LeagueStandings = ({ leagueId, season, teamId }) => {
         <table className="w-full table-auto">
           <thead>
             <tr className="bg-dark-2">
-              <th className="py-2">Pos</th>
+              <th className="py-2">#</th>
               <th className="py-2">Club</th>
               <th className="py-2">Pl</th>
-              <th className="py-2">W</th>
-              <th className="py-2">D</th>
-              <th className="py-2">L</th>
+              <th className="hidden sm:table-cell py-2">W</th>
+              <th className="hidden sm:table-cell py-2">D</th>
+              <th className="hidden sm:table-cell py-2">L</th>
               <th className="py-2">GD</th>
-              <th className="py-2 text-accent">Pts</th>
+              <th className="py-2 font-extrabold">Pts</th>
               <th className="hidden sm:table-cell py-2">Form</th>
             </tr>
           </thead>
@@ -222,11 +232,11 @@ const LeagueStandings = ({ leagueId, season, teamId }) => {
                   {shortenTeamName(team.team.name)}
                 </td>
                 <td className="py-2 text-center">{team.all.played}</td>
-                <td className="py-2 text-center">{team.all.win}</td>
-                <td className="py-2 text-center">{team.all.draw}</td>
-                <td className="py-2 text-center">{team.all.lose}</td>
+                <td className="hidden sm:table-cell py-2 text-center">{team.all.win}</td>
+                <td className="hidden sm:table-cell py-2 text-center">{team.all.draw}</td>
+                <td className="hidden sm:table-cell py-2 text-center">{team.all.lose}</td>
                 <td className="py-2 text-center">{team.goalsDiff}</td>
-                <td className="py-2 text-center text-accent">{team.points}</td>
+                <td className="py-2 text-center font-extrabold">{team.points}</td>
                 <td className="hidden sm:table-cell py-2 text-center relative">
                   {team.form &&
                     team.form.split("").map((result, i) => (

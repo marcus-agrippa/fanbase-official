@@ -72,7 +72,7 @@ const NextFixture = ({ teamId }) => {
         <img src={nextFixture.teams.away.logo} alt="away logo" className="w-10 h-10 m-auto ml-4" />
       </div>
       <div className='text-center'>
-        <p className='my-5'><span className='text-accent mr-2'></span>{nextFixture.league.name}</p>
+        <p className='text-sm px-2 py-1 inline-block bg-accent my-3'>{nextFixture.league.name}</p>
         <p className='my-5'><span className='text-accent mr-2'></span>{nextFixture.league.round}</p>
         <p className='my-5'><span className='text-accent mr-2'>Date/Time:</span>{formatDate(nextFixture.fixture.date)}</p>
         <p className='my-5'><span className='text-accent mr-2'>Venue:</span>{nextFixture.fixture.venue.name}</p>

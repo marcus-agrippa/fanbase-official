@@ -8,9 +8,9 @@ import SelectedTeamContext from '../../context/SelectedTeamContext';
 const Navbar = ({ title }) => {
   const { selectedLeague, selectedTeam } = useContext(SelectedTeamContext);
   const navigate = useNavigate();
-  const [menuOpen, setMenuOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false); // Boolean used to set `menuOpen` as false
 
-  const toggleMenu = () => {
+  const toggleMenu = () => { // Used to change the state of the `menuOpen` state
     setMenuOpen(!menuOpen);
   };
 
@@ -26,8 +26,8 @@ const Navbar = ({ title }) => {
           </div>
           <button
             className="block md:hidden px-2 mx-2"
-            onClick={toggleMenu}
-            aria-label="Toggle menu"
+            onClick={toggleMenu} // When clicked will open/close menu
+            aria-label="Toggle menu" // Labelling an interactive element
           >
             {menuOpen ? (
               <svg
@@ -63,7 +63,7 @@ const Navbar = ({ title }) => {
           </button>
           <div
             className={`${
-              menuOpen ? 'block' : 'hidden'
+              menuOpen ? 'block' : 'hidden' // Conditional Rendering: If true display block and if false hide
             } absolute top-full left-0 w-screen md:relative md:w-auto md:static bg-neutral md:flex md:flex-2 z-10`}
           >
             <div className="flex flex-col md:flex-row justify-end items-center w-full md:items-center md:w-auto">
@@ -75,13 +75,19 @@ const Navbar = ({ title }) => {
               </Link>
               <Link
                 to={`/players${
-                  selectedLeague && selectedTeam
+                  selectedLeague && selectedTeam // Conditional Rendering: If a league and team are selected then navigate 
                     ? `?leagueId=${selectedLeague}&teamId=${selectedTeam}`
                     : ''
                 }`}
                 className="btn btn-ghost flex bt-sm rounded-btn block"
               >
                 Players
+              </Link>
+              <Link
+                to="/news"
+                className="btn btn-ghost flex bt-sm rounded-btn block"
+              >
+                News
               </Link>
               <Link
                 to="/about"

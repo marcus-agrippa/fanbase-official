@@ -1,9 +1,24 @@
-import React from 'react'
+import React from 'react';
+import { TwitterTimelineEmbed } from 'react-twitter-embed';
 
-const TeamTwitterFeed = () => {
+const TeamTwitter = ({ twitterHandle }) => {
+  if (!twitterHandle) {
+    return <div>Please select a club to display its Twitter feed</div>;
+  }
+
   return (
-    <div className='text-3xl font-bold text-center my-4'>TeamTwitterFeed</div>
-  )
-}
+    <div className="twitter-feed flex flex-col items-center">
+      <h1 className="text-3xl font-bold text-white text-center my-10">
+        {twitterHandle}'s Twitter Feed
+      </h1>
+      <TwitterTimelineEmbed
+        sourceType="profile"
+        screenName={twitterHandle}
+        options={{ width: 300, height: 600 }}
+        noFooter
+      />
+    </div>
+  );
+};
 
-export default TeamTwitterFeed
+export default TeamTwitter;

@@ -38,7 +38,7 @@ const TopRedCards = ({ leagueId }) => {
 
   return (
     <div className="bg-dark-1 text-white p-4 rounded-lg">
-      <h1 className="text-3xl font-bold text-center my-4">Most Red Cards</h1>
+      <h1 className="text-3xl font-bold text-center my-4">Red Cards</h1>
       {topRedCards.map((player, index) => (
         <div key={index} className={`p-4 ${index === 0 ? 'bg-blue-500 rounded-lg' : ''}`}>
           <div className="flex flew-row justify-start items-center gap-2">

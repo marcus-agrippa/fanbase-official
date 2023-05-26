@@ -49,24 +49,32 @@ const TeamResults = ({ teamId }) => {
   return (
     <div className="bg-dark-1 text-white p-4 rounded-lg">
       <h1 className="text-3xl font-bold text-center my-4">Recent Results</h1>
-      <ul className="mt-10">
+      <ul className="space-y-10 mt-10">
         {teamResults.map((result, index) => (
-          <li key={index} className="flex items-center justify-center flex-row mt-10 bg-gray-800 rounded-lg py-5">
-            <div className='flex flex-row items-center'>
-              <span className="text-lg text-xl">{shortenTeamName(result.teams.home.name)}</span>
-              <span><img src={result.teams.home.logo} alt="home logo" className="w-7 h-7 h-full m-auto ml-3 mr-3" /></span>
-            </div>
-            <div className="flex flex-row items-center">
-              <div className="bg-blue-500 text-white font-bold text-lg p-1 border-r-2 border-blue-300 w-8 text-center">
-                {result.goals.home}
+          <li key={index} className="flex items-center justify-center space-y-2 flex-row space-y-0 bg-gray-800 rounded-lg">
+            <div className='flex flex-col'>
+              <h3 className="text-xl my-3 text-center">{formatDate(result.fixture.date)}</h3>
+              <div className="flex justify-center items-center">
+                <h4 className="text-sm px-2 py-1 inline-block bg-accent my-3">{result.league.name}</h4>
               </div>
-              <div className="bg-blue-500 text-white font-bold text-lg p-1 w-8 text-center">
-                {result.goals.away}
+              <div className='flex flex-row justify-center items-center my-4'>
+                <div className='flex flex-row items-center'>
+                  <span className="text-lg text-xl">{shortenTeamName(result.teams.home.name)}</span>
+                  <span><img src={result.teams.home.logo} alt="home logo" className="w-7 h-7 h-full m-auto ml-3 mr-3" /></span>
+                </div>
+                <div className="flex flex-row items-center">
+                  <div className="bg-blue-500 text-white font-bold text-lg p-1 border-r-2 border-blue-300 w-8 text-center">
+                    {result.goals.home}
+                  </div>
+                  <div className="bg-blue-500 text-white font-bold text-lg p-1 w-8 text-center">
+                    {result.goals.away}
+                  </div>
+                </div>
+                <div className='flex flex-row items-center'>
+                  <span><img src={result.teams.away.logo} alt="away logo" className="w-7 h-7 h-full m-auto ml-3 mr-3" /></span>
+                  <span className="text-lg text-xl">{shortenTeamName(result.teams.away.name)}</span>
+                </div>
               </div>
-            </div>
-            <div className='flex flex-row items-center'>
-              <span><img src={result.teams.away.logo} alt="away logo" className="w-7 h-7 h-full m-auto ml-3 mr-3" /></span>
-              <span className="text-lg text-xl">{shortenTeamName(result.teams.away.name)}</span>
             </div>
           </li>
         ))}
