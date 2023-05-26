@@ -1,5 +1,5 @@
-import React, { useContext, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useContext, useState, useEffect, useRef } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { GiSoccerBall } from 'react-icons/gi';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
@@ -8,11 +8,35 @@ import SelectedTeamContext from '../../context/SelectedTeamContext';
 const Navbar = ({ title }) => {
   const { selectedLeague, selectedTeam } = useContext(SelectedTeamContext);
   const navigate = useNavigate();
-  const [menuOpen, setMenuOpen] = useState(false); // Boolean used to set `menuOpen` as false
+  const location = useLocation();
+  const [menuOpen, setMenuOpen] = useState(false);
+  const menuRef = useRef();
 
   const toggleMenu = () => { // Used to change the state of the `menuOpen` state
     setMenuOpen(!menuOpen);
   };
+
+  useEffect(() => {
+    const closeMenu = () => {
+      setMenuOpen(false);
+    };
+
+    const handleClickOutside = (event) => {
+      if (menuRef.current && !menuRef.current.contains(event.target)) {
+        closeMenu();
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
+  useEffect(() => {
+    setMenuOpen(false); // Close the menu when the location changes
+  }, [location]);
 
   return (
     <div className='w-screen'>
@@ -62,6 +86,7 @@ const Navbar = ({ title }) => {
             )}
           </button>
           <div
+            ref={menuRef}
             className={`${
               menuOpen ? 'block' : 'hidden' // Conditional Rendering: If true display block and if false hide
             } absolute top-full left-0 w-screen md:relative md:w-auto md:static bg-neutral md:flex md:flex-2 z-10`}
