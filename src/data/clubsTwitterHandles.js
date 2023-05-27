@@ -529,7 +529,7 @@ export const clubsTwitterHandles = [
   {
     id: 201,
     name: "AZ Alkmaar",
-    twitterHandle: "az_nl",
+    twitterHandle: "AZAlkmaar",
   },
   {
     id: 415,
@@ -585,5 +585,288 @@ export const clubsTwitterHandles = [
     id: 195,
     name: "Willem II",
     twitterHandle: "WillemII",
+  },
+  // Start Liga Portugal Teams
+  {
+    id: 240,
+    name: "Arouca FC",
+    twitterHandle: "SC_Arouca",
+  },
+  {
+    id: 221,
+    name: "Belenenses SAD",
+    twitterHandle: "SCBelenensesSAD",
+  },
+  {
+    id: 211,
+    name: "Benfica",
+    twitterHandle: "SLBenfica",
+  },
+  {
+    id: 222,
+    name: "Boavista FC",
+    twitterHandle: "BoavistaFC",
+  },
+  {
+    id: 217,
+    name: "Braga",
+    twitterHandle: "SCBraga",
+  },
+  {
+    id: 4716,
+    name: "Casa Pia AC",
+    twitterHandle: "CasaPiaAC",
+  },
+  {
+    id: 242,
+    name: "FC Famalicão",
+    twitterHandle: "FCfamalicao",
+  },
+  {
+    id: 212,
+    name: "FC Porto",
+    twitterHandle: "FCPorto",
+  },
+  {
+    id: 762,
+    name: "Gil Vicente FC",
+    twitterHandle: "GilVicenteFC",
+  },
+  {
+    id: 215,
+    name: "Moreirense FC",
+    twitterHandle: "MoreirenseFC",
+  },
+  {
+    id: 234,
+    name: "Paços de Ferreira",
+    twitterHandle: "pacosdeferreira",
+  },
+  {
+    id: 226,
+    name: "Rio Ave FC",
+    twitterHandle: "RioAveFC",
+  },
+  {
+    id: 227,
+    name: "Santa Clara",
+    twitterHandle: "SantaClaraFC",
+  },
+  {
+    id: 228,
+    name: "Sporting CP",
+    twitterHandle: "SantaClaraFC",
+  },
+  {
+    id: 224,
+    name: "Vitória de Guimarães",
+    twitterHandle: "VitoriaSC1922",
+  },
+  {
+    id: 219,
+    name: "Vitória de Setúbal",
+    twitterHandle: "VitoriaSetubal",
+  },
+  // Start Belgian Pro League Teams
+  {
+    id: 554,
+    name: "Anderlecht",
+    twitterHandle: "RSCAnderlecht",
+  },
+  {
+    id: 740,
+    name: "Antwerp",
+    twitterHandle: "RoyalAntwerpFC",
+  },
+  {
+    id: 263,
+    name: "Beerschot VA",
+    twitterHandle: "beerschotva",
+  },
+  {
+    id: 569,
+    name: "Club Brugge",
+    twitterHandle: "ClubBrugge",
+  },
+  {
+    id: 741,
+    name: "Cercle Brugge",
+    twitterHandle: "cerclebrugge",
+  },
+  {
+    id: 742,
+    name: "Genk",
+    twitterHandle: "KRCGenkOfficial",
+  },
+  {
+    id: 631,
+    name: "Gent",
+    twitterHandle: "KAAGent",
+  },
+  {
+    id: 259,
+    name: "Lommel SK",
+    twitterHandle: "LommelSK",
+  },
+  {
+    id: 733,
+    name: "Standard Liège",
+    twitterHandle: "StandardLiege",
+  },
+  {
+    id: 1393,
+    name: "Union Saint-Gilloise",
+    twitterHandle: "UnionSaintGilloise",
+  },
+  // Start English Championship Teams
+  {
+    id: 1393,
+    name: "AFC Bournemouth",
+    twitterHandle: "afcbournemouth",
+  },
+  {
+    id: 1393,
+    name: "Barnsley FC",
+    twitterHandle: "BarnsleyFC",
+  },
+  {
+    id: 1393,
+    name: "Birmingham City FC",
+    twitterHandle: "BCFC",
+  },
+  {
+    id: 1393,
+    name: "Blackburn Rovers",
+    twitterHandle: "RoversOfficial",
+  },
+  {
+    id: 1393,
+    name: "Bristol City FC",
+    twitterHandle: "BristolCity",
+  },
+  {
+    id: 1393,
+    name: "Cardiff City FC",
+    twitterHandle: "CardiffCityFC",
+  },
+  {
+    id: 1393,
+    name: "Coventry City FC",
+    twitterHandle: "CoventryCityFC",
+  },
+  {
+    id: 1393,
+    name: "Derby County",
+    twitterHandle: "dcfcofficial",
+  },
+  {
+    id: 1393,
+    name: "Fulham FC",
+    twitterHandle: "FulhamFC",
+  },
+  {
+    id: 1393,
+    name: "Huddersfield Town",
+    twitterHandle: "htafc",
+  },
+  {
+    id: 1393,
+    name: "Luton Town",
+    twitterHandle: "lutontown",
+  },
+  {
+    id: 1393,
+    name: "Middlesbrough FC:",
+    twitterHandle: "MiddlesbroughFC",
+  },
+  {
+    id: 1393,
+    name: "Peterborough United",
+    twitterHandle: "theposh",
+  },
+  {
+    id: 1393,
+    name: "Queens Park Rangers",
+    twitterHandle: "QPR",
+  },
+  {
+    id: 1393,
+    name: "Reading FC",
+    twitterHandle: "readingfc",
+  },
+  {
+    id: 1393,
+    name: "Sheffield Wednesday",
+    twitterHandle: "swfc",
+  },
+  {
+    id: 1393,
+    name: "Stoke City FC",
+    twitterHandle: "stokecity",
+  },
+  {
+    id: 1393,
+    name: "Swansea City AFC",
+    twitterHandle: "SwansOfficial",
+  },
+  {
+    id: 1393,
+    name: "West Bromwich Albion",
+    twitterHandle: "WBA",
+  },
+  {
+    id: 1393,
+    name: "Wigan Athletic",
+    twitterHandle: "wiganathletic",
+  },
+  {
+    id: 1393,
+    name: "Watford",
+    twitterHandle: "WatfordFC",
+  },
+  {
+    id: 1393,
+    name: "Burnley",
+    twitterHandle: "BurnleyOfficial",
+  },
+  {
+    id: 1393,
+    name: "Milwall",
+    twitterHandle: "MilwallFootball",
+  },
+  {
+    id: 1393,
+    name: "Preston",
+    twitterHandle: "pnefc",
+  },
+  {
+    id: 1393,
+    name: "Sheffield Utd",
+    twitterHandle: "SheffieldUnited",
+  },
+  {
+    id: 1393,
+    name: "Hull City",
+    twitterHandle: "HullCity",
+  },
+  {
+    id: 1393,
+    name: "Norwich City FC",
+    twitterHandle: "NorwichCityFC",
+  },
+  {
+    id: 1393,
+    name: "Rotherham United FC",
+    twitterHandle: "OfficialRUFC",
+  },
+  {
+    id: 1393,
+    name: "Sunderland AFC",
+    twitterHandle: "SunderlandAFC",
+  },
+  {
+    id: 1393,
+    name: "Blackpool FC",
+    twitterHandle: "BlackpoolFC",
   },
 ];
