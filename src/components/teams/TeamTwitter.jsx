@@ -7,7 +7,7 @@ const TeamTwitter = ({ twitterHandle }) => {
   }
 
   return (
-    <div className="twitter-feed flex flex-col">
+    <div className="twitter-feed flex flex-col items-center">
       <h1 className="text-3xl font-bold text-white text-center my-10">
         {twitterHandle}'s Twitter Feed
       </h1>
