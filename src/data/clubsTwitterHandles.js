@@ -610,7 +610,7 @@ export const clubsTwitterHandles = [
   {
     id: 217,
     name: "Braga",
-    twitterHandle: "SCBraga",
+    twitterHandle: "SCBragaOficial",
   },
   {
     id: 4716,

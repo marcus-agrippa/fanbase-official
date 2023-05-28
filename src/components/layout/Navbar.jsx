@@ -109,6 +109,16 @@ const Navbar = ({ title }) => {
                 Players
               </Link>
               <Link
+                to={`/league${
+                  selectedLeague && selectedTeam // Conditional Rendering: If a league and team are selected then navigate 
+                    ? `?leagueId=${selectedLeague}&teamId=${selectedTeam}`
+                    : ''
+                }`}
+                className="btn btn-ghost flex bt-sm rounded-btn block"
+              >
+                League
+              </Link>
+              <Link
                 to="/news"
                 className="btn btn-ghost flex bt-sm rounded-btn block"
               >

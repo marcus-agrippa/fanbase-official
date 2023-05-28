@@ -157,9 +157,17 @@ const Home = ({ setLeagueId, setTeamId }) => {
                 onClick={() =>
                   navigate(`/players?leagueId=${selectedLeague}&teamId=${selectedTeam}`)
                 }
-                className="text-white bg-blue-500 px-4 py-2 rounded-md mt-6"
+                className="text-white bg-blue-500 px-4 mr-4 py-2 rounded-md mt-6"
               >
                 Go to Players Page
+              </button>
+              <button
+                onClick={() =>
+                  navigate(`/league?leagueId=${selectedLeague}&teamId=${selectedTeam}`)
+                }
+                className="text-white bg-blue-500 px-4 py-2 rounded-md mt-6"
+              >
+                Go to League Page
               </button>
             </div>
           )}

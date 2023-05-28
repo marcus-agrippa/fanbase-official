@@ -6,6 +6,7 @@ import { SelectedTeamProvider } from "./context/SelectedTeamContext";
 import ReactGA from "react-ga4";
 import Home from "./pages/Home";
 import Players from "./pages/Players";
+import League from "./pages/League";
 import Stats from "./pages/Stats";
 import NewsPage from "./news/NewsPage";
 import About from "./pages/About";
@@ -36,6 +37,15 @@ function App() {
               path="/players"
               element={
                 <Players
+                  leagueId={leagueId}
+                  teamId={teamId}
+                />
+              }
+            />
+            <Route
+              path="/league"
+              element={
+                <League
                   leagueId={leagueId}
                   teamId={teamId}
                 />

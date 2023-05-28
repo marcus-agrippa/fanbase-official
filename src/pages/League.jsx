@@ -1,16 +1,11 @@
-// pages/Players.js
 import React, { useState, useEffect, useContext } from 'react';
 import { useLocation } from 'react-router-dom';
+import LeagueStandings from '../components/league/LeagueStandings';
+import LeagueResults from '../components/league/LeagueResults';
+import LeagueFixtures from '../components/league/LeagueFixtures';
 import SelectedTeamContext from '../context/SelectedTeamContext';
-import TopScorers from '../components/players/TopScorers';
-import TopAssists from '../components/players/TopAssists';
-import TopShots from '../components/players/TopShots';
-import TopPassers from '../components/players/TopPassers';
-import TopRedCards from '../components/players/TopRedCards';
-import TopYellowCards from '../components/players/TopYellowCards';
 
-
-const Players = () => {
+const League = () => {
   const location = useLocation();
   const { selectedLeague, selectedTeam } = useContext(SelectedTeamContext);
   const urlSearchParams = new URLSearchParams(location.search);
@@ -35,33 +30,23 @@ const Players = () => {
     console.log('leagueId:', leagueId);
     console.log('teamId:', teamId);
   }, [selectedLeague, selectedTeam, leagueIdFromUrl, teamIdFromUrl]);
-  
+
   return (
     <div className='w-[90vw]'>
-      <h1 className="text-3xl font-bold text-white text-center my-10">League Player Statistics</h1>
+      <h1 className="text-3xl font-bold text-white text-center my-10">League Overview</h1>
       <div className='grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-1 xl:grid-cols-3 gap-4 mt-4'>
-        <div className='bg-gray-900 p-4 rounded shadow'>
-          <TopScorers leagueId={leagueId} />
+        <div className="bg-gray-900 p-4 rounded shadow">
+          <LeagueStandings leagueId={selectedLeague} season={2022} teamId={selectedTeam} />
         </div>
-        <div className='bg-gray-900 p-4 rounded shadow'>
-          <TopAssists leagueId={leagueId} />
+        <div className="bg-gray-900 p-4 rounded shadow">
+          <LeagueFixtures leagueId={selectedLeague} season={2022} teamId={selectedTeam} />
         </div>
-        <div className='bg-gray-900 p-4 rounded shadow'>
-          <TopShots leagueId={leagueId} />
-        </div>
-        <div className='bg-gray-900 p-4 rounded shadow'>
-          <TopPassers leagueId={leagueId} />
-        </div>
-        <div className='bg-gray-900 p-4 rounded shadow'>
-          <TopRedCards leagueId={leagueId} />
-        </div>
-        <div className='bg-gray-900 p-4 rounded shadow'>
-          <TopYellowCards leagueId={leagueId} />
+        <div className="bg-gray-900 p-4 rounded shadow">
+          <LeagueResults leagueId={selectedLeague} season={2022} teamId={selectedTeam} />
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Players;
-
+export default League
