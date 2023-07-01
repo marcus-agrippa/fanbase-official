@@ -32,7 +32,7 @@ const TransferNews = () => {
         </div>
         <div className='bg-gray-900 p-12 rounded twitter-feed shadow flex flex-col items-center'>
           <h1 className="text-3xl flex flex-col font-bold text-white text-center my-10">
-            Transer News Central's Twitter Feed
+            Transfer News Central's Twitter Feed
           </h1>
           <TwitterTimelineEmbed
             sourceType="profile"
