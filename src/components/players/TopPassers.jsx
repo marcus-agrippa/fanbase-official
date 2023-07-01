@@ -1,5 +1,6 @@
 // components/TopPassers.js
 import React, { useState, useEffect } from 'react';
+import teamColors from '../teams/teamColours';
 
 const BASE_URL = 'https://v3.football.api-sports.io';
 
@@ -40,7 +41,7 @@ const TopPassers = ({ leagueId }) => {
     <div className="bg-dark-1 text-white p-4 rounded-lg">
       <h1 className="text-3xl font-bold text-center my-4">Top Passers</h1>
       {topPassers.map((player, index) => (
-          <div key={index} className={`p-4 ${index === 0 ? 'bg-blue-500 rounded-lg' : ''}`}>
+          <div key={index} className={`p-4 ${index === 0 ? (teamColors[player?.statistics?.[0]?.team?.name] || 'bg-blue-500') + ' rounded-lg' : ''}`}>
           <div className="flex flew-row justify-start items-center gap-2">
             <span className="font-bold text-lg md:text-xl mr-4">
               {index + 1}.

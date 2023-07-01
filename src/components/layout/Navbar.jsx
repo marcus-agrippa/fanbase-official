@@ -125,6 +125,12 @@ const Navbar = ({ title }) => {
                 News
               </Link>
               <Link
+                to="/transfer-news"
+                className="btn btn-ghost flex bt-sm rounded-btn block"
+              >
+                Transfer News
+              </Link>
+              <Link
                 to="/about"
                 className="btn btn-ghost flex bt-sm rounded-btn block"
               >

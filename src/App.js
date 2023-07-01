@@ -14,6 +14,7 @@ import NotFound from "./pages/NotFound";
 import Navbar from "./components/layout/Navbar";
 import Footer from "./components/layout/Footer";
 import ArticlePage from "./news/ArticlePage";
+import TransferNews from "./pages/TransferNews";
 
 const trackingId = process.env.REACT_APP_GOOGLE_ANALYTICS_TRACKING_ID;
 
@@ -27,9 +28,9 @@ function App() {
     <Router>
       <SelectedTeamProvider>
       <PageViews />
-      <div className="flex flex-col justify-between h-screen w-screen">
+      <div className="flex flex-col justify-between h-screen w-screen font-body">
         <Navbar/>
-        <main className="mx-auto px-3 pb-12">
+        <main className="mx-auto pb-12">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/stats" element={<Stats />} />
@@ -51,6 +52,7 @@ function App() {
                 />
               }
             />
+            <Route path="/transfer-news" element={<TransferNews />} />
             <Route path="/news" element={<NewsPage />} />
             <Route path="/about" element={<About />} />
             <Route path="/article/:id" element={<ArticlePage />} />

@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import SelectedTeamContext from '../context/SelectedTeamContext';
 import NewsArticle from './NewsArticle';
-// import Video from './Video';
+import Gnews from './Gnews';
 // import BlogPost from './BlogPost';
 import contentfulClient from '../utilities/contentfulClient';
 
@@ -23,12 +23,10 @@ const NewsPage = () => {
   
   return (
     <div>
-      <h1 className="text-3xl font-bold text-white text-center my-10">News</h1>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 gap-4 mt-4">
-      {articles.map((article, index) => (
-        <NewsArticle key={index} post={article} />
-      ))}
-    </div>
+      <h1 className="text-3xl font-bold text-white text-center my-10">Football News</h1>
+      <div className="grid grid-cols-1 gap-4 mt-4">
+        <Gnews />
+      </div>
     </div>
 
   );
