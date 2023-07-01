@@ -22,7 +22,7 @@ const NewsPage = () => {
   }, [selectedLeague]);
   
   return (
-    <div>
+    <div className='w-[90vw]'>
       <h1 className="text-3xl font-bold text-white text-center my-10">Football News</h1>
       <div className="grid grid-cols-1 gap-4 mt-4">
         <Gnews />
