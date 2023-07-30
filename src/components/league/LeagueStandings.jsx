@@ -146,6 +146,10 @@ const LeagueStandings = ({ leagueId, season, teamId }) => {
     };
 
     const getFormEmoji = (form) => {
+      if (!form) {
+        return "";
+      }
+      
       if (form.slice(-5) === "WWWWW") {
         return "🔥";
       } else if (form.slice(-5) === "LLLLL") {

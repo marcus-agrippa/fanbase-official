@@ -5,6 +5,7 @@ const BASE_URL = 'https://v3.football.api-sports.io';
 const TeamFixtures = ({ teamId }) => {
   const [teamFixtures, setFixtureData] = useState([]);
   const [fixturesToShow, setFixturesToShow] = useState(5);
+  const [showMoreButtonClicked, setShowMoreButtonClicked] = useState(false);
 
   useEffect(() => {
     const fetchTeamFixtures = async (teamId) => {
@@ -44,6 +45,12 @@ const TeamFixtures = ({ teamId }) => {
 
   const handleLoadMoreFixtures = () => {
     setFixturesToShow(fixturesToShow + 5);
+    setShowMoreButtonClicked(true);
+  };
+
+  const handleShowLessFixtures = () => {
+    setFixturesToShow(5);
+    setShowMoreButtonClicked(false); // Add this line
   };
 
   // Filter fixtures to only include upcoming fixtures
@@ -85,12 +92,17 @@ const TeamFixtures = ({ teamId }) => {
       </li>
     ))}
   </ul>
-  {fixturesToShow < upcomingFixtures.length && (
-    <button onClick={handleLoadMoreFixtures} className="bg-indigo-500 text-white py-2 px-4 rounded mt-10 block mx-auto">
-      More Fixtures
-    </button>
-  )}
-</div>
+  {fixturesToShow < upcomingFixtures.length && !showMoreButtonClicked && (
+  <button onClick={handleLoadMoreFixtures} className="bg-indigo-500 text-white py-2 px-4 rounded mt-10 block mx-auto">
+    More Fixtures
+  </button>
+    )}
+    {showMoreButtonClicked && (
+      <button onClick={handleShowLessFixtures} className="bg-indigo-500 text-white py-2 px-4 rounded mt-10 block mx-auto">
+        Show Less
+      </button>
+    )}
+  </div>
 
   );
 };

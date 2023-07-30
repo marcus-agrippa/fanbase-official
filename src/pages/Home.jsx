@@ -134,7 +134,7 @@ const Home = ({ setLeagueId, setTeamId }) => {
             <TeamTwitter twitterHandle={selectedClubTwitterHandle} />
           </div>
           <div className="bg-gray-900 p-4 rounded shadow">
-            <LeagueStandings leagueId={selectedLeague} season={2022} teamId={selectedTeam} />
+            <LeagueStandings leagueId={selectedLeague} season={2023} teamId={selectedTeam} />
           </div>
           <div className="bg-gray-900 p-4 rounded shadow">
             <TeamFixtures teamId={selectedTeam} />
@@ -143,7 +143,7 @@ const Home = ({ setLeagueId, setTeamId }) => {
             <TeamResults teamId={selectedTeam} />
           </div>
           <div className="bg-gray-900 p-4 rounded shadow">
-            {selectedTeam && <InjuriesAndSuspensions teamId={selectedTeam} season={2022} />}
+            {selectedTeam && <InjuriesAndSuspensions teamId={selectedTeam} season={2023} />}
           </div>
           <div className="bg-gray-900 p-4 rounded shadow">
             {selectedTeam && <TransferNews teamId={selectedTeam} />}

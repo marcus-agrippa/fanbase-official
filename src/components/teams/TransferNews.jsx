@@ -25,26 +25,35 @@ const TransferNews = ({ teamId }) => {
   }, [teamId]);
 
   const currentDate = new Date();
-  const sixMonthsAgo = new Date(currentDate.setMonth(currentDate.getMonth() - 6));
+  const sixMonthsAgo = new Date(currentDate.setMonth(currentDate.getMonth() - 3));
 
   const recentTransfers = transfers.filter((transfer) => {
     const transferDate = new Date(transfer.transfers[0].date);
     return transferDate >= sixMonthsAgo;
   });
 
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    const day = String(date.getDate()).padStart(2, '0');
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const year = date.getFullYear();
+  
+    return `${day}-${month}-${year}`;
+  };
+
   return (
     <div className="bg-dark-1 text-white p-4 rounded-lg">
       <h1 className="text-3xl font-bold text-center my-4">Recent Transfers</h1>
+      <p className='text-center'>Last 3 months</p>
       <div className="overflow-x-auto mt-10">
       <table className="w-full table-auto">
         <thead>
           <tr>
             <th className="py-2">Player</th>
-            <th className="py-2">Date</th>
-            <th className="py-2">From Club</th>
-            <th className="py-2">To Club</th>
-            <th className="py-2">Type of Transfer</th>
-            <th className="py-2">Transfer Fee</th>
+            <th className="hidden sm:table-cell py-2">Date</th>
+            <th className="py-2">From</th>
+            <th className="py-2">To</th>
+            <th className="py-2">Fee</th>
           </tr>
         </thead>
         <tbody>
@@ -53,8 +62,8 @@ const TransferNews = ({ teamId }) => {
               <td className={`border border-gray-500 py-2 text-center${index % 2 === 1 ? ' bg-gray-800' : ''}`}>
                 {transfer.player.name}
               </td>
-              <td className={`border border-gray-500 py-2 text-center${index % 2 === 1 ? ' bg-gray-800' : ''}`}>
-                {transfer.transfers[0].date}
+              <td className={`hidden sm:table-cell border border-gray-500 py-2 text-center${index % 2 === 1 ? ' bg-gray-800' : ''}`}>
+                {formatDate(transfer.transfers[0].date)}
               </td>
               <td className={`border border-gray-500 py-2 text-center${index % 2 === 1 ? ' bg-gray-800' : ''}`}>
                 {transfer.transfers[0].teams.out.name}
@@ -64,9 +73,6 @@ const TransferNews = ({ teamId }) => {
               </td>
               <td className={`border border-gray-500 py-2 text-center${index % 2 === 1 ? ' bg-gray-800' : ''}`}>
                 {transfer.transfers[0].type}
-              </td>
-              <td className={`border border-gray-500 py-2 text-center${index % 2 === 1 ? ' bg-gray-800' : ''}`}>
-                {transfer.transfers[0].fee || 'N/A'}
               </td>
             </tr>
           ))}

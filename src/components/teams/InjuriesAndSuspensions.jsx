@@ -28,6 +28,7 @@ const InjuriesAndSuspensions = ({ teamId, season }) => {
         const data = await response.json();
         const sortedAndFilteredInjuries = filterAndSortInjuries(data.response);
         setInjuries(sortedAndFilteredInjuries);
+        console.log('injuries', sortedAndFilteredInjuries)
       } catch (error) {
         console.error('Error fetching injuries:', error);
       }
@@ -47,6 +48,7 @@ const InjuriesAndSuspensions = ({ teamId, season }) => {
   return (
     <div className="bg-dark-1 text-white p-4 rounded-lg">
       <h1 className="text-3xl font-bold text-center my-4">Injuries and Suspensions</h1>
+      <p className='text-center'>Impacting next fixture</p>
       <div className="overflow-x-auto mt-10">
       <table className="w-full table-auto">
         <thead>
@@ -54,22 +56,17 @@ const InjuriesAndSuspensions = ({ teamId, season }) => {
             <th className="py-2">Name</th>
             <th className="py-2">Reason</th>
             <th className="py-2">Type</th>
-            <th className="py-2">Competition</th>
+            <th className="hidden sm:table-cell py-2">Competition</th>
             <th className="hidden sm:table-cell py-2">Date</th>
           </tr>
         </thead>
         <tbody>
           {injuries.map((injury, index) => (
             <tr key={index} className={index % 2 === 1 ? 'odd:bg-gray-800' : ''}>
-              <td className="border border-gray-500 py-2 text-center">
-                <div className="flex justify-start">
-                  <img src={injury.player.photo} alt="player photo" className="w-10 h-10 m-left mx-4" />
-                  <span className="text-xl">{injury.player.name}</span>
-                </div>
-              </td>
+              <td className="border border-gray-500 py-2 text-center">{injury.player.name}</td>
               <td className="border border-gray-500 py-2 text-center">{injury.player.reason}</td>
               <td className="border border-gray-500 py-2 text-center">{injury.player.type}</td>
-              <td className="border border-gray-500 py-2 text-center">{injury.league.name}</td>
+              <td className="hidden sm:table-cell border border-gray-500 py-2 text-center">{injury.league.name}</td>
               <td className="hidden sm:table-cell border border-gray-500 py-2 text-center">{formatDate(injury.fixture.date)}</td>
             </tr>
           ))}

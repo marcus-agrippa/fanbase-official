@@ -16,7 +16,8 @@ const TeamResults = ({ teamId }) => {
           },
         });
         const data = await response.json();
-        setTeamResults(data.response);
+        const sortedResults = data.response.sort((a, b) => new Date(b.fixture.date) - new Date(a.fixture.date));
+        setTeamResults(sortedResults);
       } catch (error) {
         console.error('Error fetching team results:', error);
       }

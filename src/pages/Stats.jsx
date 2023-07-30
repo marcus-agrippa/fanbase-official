@@ -3,7 +3,7 @@ import TopGoalscorers from '../components/stats/TopGoalscorers';
 
 const Stats = () => {
   const leagueId = 123; // Replace with the actual league ID
-  const season = 2022; // Replace with the actual season
+  const season = season=2023; // Replace with the actual season
 
   return (
     <div className="bg-dark-1 text-white p-4 rounded-lg">
