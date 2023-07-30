@@ -26,9 +26,6 @@ const League = () => {
     } else if (teamIdFromUrl) {
       setTeamId(teamIdFromUrl);
     }
-
-    console.log('leagueId:', leagueId);
-    console.log('teamId:', teamId);
   }, [selectedLeague, selectedTeam, leagueIdFromUrl, teamIdFromUrl]);
 
   return (

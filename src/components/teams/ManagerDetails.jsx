@@ -21,7 +21,6 @@ const ManagerDetails = ({ teamId }) => {
       const managerData = data.response[0];
       setManager(managerData);
       setManagerId(managerData.id);
-      console.log(managerData);
     } catch (error) {
       console.error('Error fetching manager:', error);
     }

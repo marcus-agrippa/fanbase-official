@@ -17,7 +17,6 @@ const LeagueFixtures = ({ leagueId }) => {
         }
       })
         const data = await response.json();
-        console.log('fixtures', data)
         const teamFixtureArray = data.response.map(item => item); // Extract the fixture objects from the response array
         setFixtureData(teamFixtureArray);
       } catch (error) {
