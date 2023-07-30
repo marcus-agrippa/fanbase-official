@@ -10,7 +10,7 @@ const TopRedCards = ({ leagueId }) => {
   useEffect(() => {
     const fetchTopRedCards = async () => {
       try {
-        const response = await fetch(`${BASE_URL}/players/topredcards?league=${leagueId}&season=2022`, {
+        const response = await fetch(`${BASE_URL}/players/topredcards?league=${leagueId}&season=2023`, {
           method: 'GET',
           headers: {
             'x-rapidapi-host': 'v3.football.api-sports.io',

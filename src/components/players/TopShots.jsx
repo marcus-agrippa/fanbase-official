@@ -10,7 +10,7 @@ const TopShots = ({ leagueId }) => {
   useEffect(() => {
     const fetchTopShots = async () => {
       try {
-        const response = await fetch(`${BASE_URL}/players/topscorers?season=2022&league=${leagueId}`, {
+        const response = await fetch(`${BASE_URL}/players/topscorers?season=2023&league=${leagueId}`, {
           method: 'GET',
           headers: {
             'x-rapidapi-host': 'v3.football.api-sports.io',

@@ -11,7 +11,7 @@ const TeamsList = () => {
   }, []);
 
   const fetchTeams = async () => {
-    const response = await fetch(`https://v3.football.api-sports.io/teams?league=179&season=2022`, {
+    const response = await fetch(`https://v3.football.api-sports.io/teams?league=179&season=2023`, {
         "method": "GET",
         "headers": {
           "x-rapidapi-host": "v3.football.api-sports.io",

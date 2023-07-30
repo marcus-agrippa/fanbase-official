@@ -9,7 +9,7 @@ const TeamFixtures = ({ teamId }) => {
   useEffect(() => {
     const fetchTeamFixtures = async (teamId) => {
       try {
-        const response = await fetch(`${BASE_URL}/fixtures?season=2022&team=${teamId}`, {
+        const response = await fetch(`${BASE_URL}/fixtures?season=2023&team=${teamId}`, {
           "method": "GET",
           "headers": {
             "x-rapidapi-host": "v3.football.api-sports.io",

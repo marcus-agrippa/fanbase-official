@@ -7,7 +7,7 @@ const TopPerformers = ({ teamId }) => {
   useEffect(() => {
     const fetchTopPerformers = async () => {
       try {
-        const response = await fetch(`https://v3.football.api-sports.io/players?team=${teamId}&season=2022`, {
+        const response = await fetch(`https://v3.football.api-sports.io/players?team=${teamId}&season=2023`, {
           method: 'GET',
           headers: {
             'x-rapidapi-host': 'v3.football.api-sports.io',
@@ -26,7 +26,7 @@ const TopPerformers = ({ teamId }) => {
 
     const fetchTeamTotalGames = async () => {
       try {
-        const response = await fetch(`https://v3.football.api-sports.io/standings?team=${teamId}&season=2022&league=39`, {
+        const response = await fetch(`https://v3.football.api-sports.io/standings?team=${teamId}&season=2023&league=39`, {
           method: 'GET',
           headers: {
             'x-rapidapi-host': 'v3.football.api-sports.io',

@@ -44,7 +44,7 @@ const Home = ({ setLeagueId, setTeamId }) => {
     const fetchTeams = async () => {
       try {
         const response = await fetch(
-          `https://v3.football.api-sports.io/teams?league=${selectedLeague}&season=2022`,
+          `https://v3.football.api-sports.io/teams?league=${selectedLeague}&season=2023`,
           {
             method: "GET",
             headers: {
