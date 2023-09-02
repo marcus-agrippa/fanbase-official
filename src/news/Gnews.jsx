@@ -2,22 +2,31 @@ import React, { useState, useEffect } from 'react';
 
 const NewsComponent = () => {
   const [articles, setArticles] = useState([]);
+  const refreshInterval = 24 * 60 * 60 * 1000;
 
   useEffect(() => {
-    fetch('https://gnews.io/api/v4/search?q=(english premier league) OR (spanish la liga) OR (bundesliga) OR (french ligue 1) OR (italian serie a)&lang=en&country=uk&from=2023-05-01T12:30:45Z&to=2023-06-31T12:30:45Z&max=20&apikey=c50b574d9d568f7dd4d7a2f1942544ef')
-      .then(response => response.json())
-      .then(data => {
-        const uniqueArticles = data.articles.reduce((unique, article) => {
-          if (!unique.some(item => item.title === article.title)) {
-            unique.push(article);
-          }
-          return unique;
-        }, []);
-  
-        setArticles(uniqueArticles);
-      })
-      .catch(console.error);
-  }, []);
+    const fetchArticles = () => {
+      fetch('https://gnews.io/api/v4/search?q=(english premier league) OR (spanish la liga) OR (bundesliga) OR (french ligue 1) OR (italian serie a) OR (Eredivisie) OR (scottish premier league) OR (bbc football news) OR (Fabrizio Romano) OR (football news premier league)&lang=en&country=uk&from=2023-05-01T12:30:45Z&max=15&apikey=c50b574d9d568f7dd4d7a2f1942544ef')
+        .then(response => response.json())
+        .then(data => {
+          const uniqueArticles = data.articles.reduce((unique, article) => {
+            if (!unique.some(item => item.title === article.title)) {
+              unique.push(article);
+            }
+            return unique;
+          }, []);
+
+          setArticles(uniqueArticles);
+        })
+        .catch(console.error);
+    };
+
+    fetchArticles();
+
+    const intervalId = setInterval(fetchArticles, refreshInterval);
+
+    return () => clearInterval(intervalId);
+  }, [refreshInterval]);
 
   if (!articles) return <p>Loading...</p>;
 
