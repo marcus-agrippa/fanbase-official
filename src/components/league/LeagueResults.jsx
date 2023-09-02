@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import { GiSoccerBall } from 'react-icons/gi';
+import { TbRectangleVertical } from 'react-icons/tb';
 
 const BASE_URL = 'https://v3.football.api-sports.io';
 
 const LeagueResults = ({ leagueId }) => {
   const [teamResults, setTeamResults] = useState([]);
+  const [selectedMatch, setSelectedMatch] = useState(null);
 
   useEffect(() => {
     const fetchTeamResults = async (leagueId) => {
@@ -27,6 +30,31 @@ const LeagueResults = ({ leagueId }) => {
     }
   }, [leagueId]);
 
+  const toggleMatchDetails = async (index, fixtureId) => {
+    if (selectedMatch === index) {
+      setSelectedMatch(null);
+    } else {
+      try {
+        const response = await fetch(`${BASE_URL}/fixtures/events?fixture=${fixtureId}`, {
+          method: 'GET',
+          headers: {
+            'x-rapidapi-host': 'v3.football.api-sports.io',
+            'x-rapidapi-key': `${process.env.REACT_APP_FOOTBALL_API_TOKEN}`,
+          },
+        });
+        const eventData = await response.json();
+        setTeamResults((prevResults) => {
+          const updatedResults = [...prevResults];
+          updatedResults[index].events = eventData.response;
+          return updatedResults;
+        });
+        setSelectedMatch(index);
+      } catch (error) {
+        console.error('Error fetching match events:', error);
+      }
+    }
+  };
+
   const shortenTeamName = (teamName) => {
     const nameParts = teamName.split(' ');
     if (nameParts.length === 1) {
@@ -44,6 +72,53 @@ const LeagueResults = ({ leagueId }) => {
     const year = date.getFullYear();
 
     return `${day}-${month}-${year}`;
+  };
+
+  const renderMatchDetails = (match, index) => {
+    if (selectedMatch === index && match.events) {
+      // Filter out substitution events
+      const nonSubstitutionEvents = match.events.filter(event => event.type !== 'subst');
+      
+      return (
+        <div className='py-5'>
+          <ul>
+            {nonSubstitutionEvents.map((event, eventIndex) => (
+              <li
+                key={eventIndex}
+                className={` ${
+                  event.team.id === match.teams.home.id ? 'text-left' : 'text-right'
+                }`}
+              >
+                {event.time.elapsed}' - {' '}
+                {event.type === 'Goal' && (
+                  <div className="inline">
+                    <span className='font-bold'>
+                      <GiSoccerBall color="white" className="inline" /> {event.player.name}
+                    </span>
+                    {event.assist && event.assist.name && (
+                      <div style={{ display: 'block' }}>
+                        (assist {event.assist.name})
+                      </div>
+                    )}
+                  </div>
+                )}
+                {event.type === 'Card' && event.detail === 'Yellow Card' && (
+                  <span>
+                    <TbRectangleVertical color="yellow" fill='yellow' className='inline' /> {event.player.name} 
+                  </span>
+                )}
+                {event.type === 'Card' && event.detail === 'Red Card' && (
+                  <span>
+                    <TbRectangleVertical color="red" fill='yellow' className='inline' /> {event.player.name} 
+                  </span>
+                )}
+              </li>
+            ))}
+          </ul>
+        </div>
+      );
+    }
+    return null;
   };
 
   return (
@@ -75,6 +150,8 @@ const LeagueResults = ({ leagueId }) => {
                   <span className="text-lg text-xl">{shortenTeamName(result.teams.away.name)}</span>
                 </div>
               </div>
+              <button onClick={() => toggleMatchDetails(index, result.fixture.id)} className='py-2 text-white font-bold'>Match Details</button>
+              {renderMatchDetails(result, index)}
             </div>
           </li>
         ))}

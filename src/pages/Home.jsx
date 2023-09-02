@@ -152,7 +152,7 @@ const Home = ({ setLeagueId, setTeamId }) => {
             {selectedTeam && <ManagerDetails teamId={selectedTeam} />}
           </div>
           {selectedTeam && (
-            <div>
+            <div className='m-auto'>
               <button
                 onClick={() =>
                   navigate(`/players?leagueId=${selectedLeague}&teamId=${selectedTeam}`)
