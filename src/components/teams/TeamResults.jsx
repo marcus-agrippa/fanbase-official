@@ -110,7 +110,7 @@ const TeamResults = ({ teamId }) => {
                 )}
                 {event.type === 'Card' && event.detail === 'Red Card' && (
                   <span>
-                    <TbRectangleVertical color="red" fill='yellow' className='inline' /> {event.player.name} 
+                    <TbRectangleVertical color="red" fill='red' className='inline' /> {event.player.name} 
                   </span>
                 )}
               </li>
