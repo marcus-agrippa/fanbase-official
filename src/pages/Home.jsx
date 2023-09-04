@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import SelectedTeamContext from '../context/SelectedTeamContext';
 import TeamSelector from '../components/teams/TeamSelector';
@@ -8,17 +7,11 @@ import TeamFixtures from '../components/teams/TeamFixtures';
 import LeagueStandings from '../components/league/LeagueStandings';
 import TeamResults from '../components/teams/TeamResults';
 import NextFixture from '../components/teams/NextFixture';
-import TeamNews from '../components/teams/TeamNews';
 import InjuriesAndSuspensions from '../components/teams/InjuriesAndSuspensions';
 import TransferNews from '../components/teams/TransferNews';
 import ManagerDetails from '../components/teams/ManagerDetails';
-import Players from './Players';
 import { clubsTwitterHandles } from '../data/clubsTwitterHandles';
 import TeamTwitter from '../components/teams/TeamTwitter';
-
-
-const API_KEY = process.env.REACT_APP_FOOTBALL_API_TOKEN;
-const BASE_URL = 'https://v3.football.api-sports.io';
 
 const leagues = [
   { id: 39, name: "Premier League" },
@@ -40,6 +33,20 @@ const Home = ({ setLeagueId, setTeamId }) => {
   const [teams, setTeams] = useState([]);
   const { selectedLeague, setSelectedLeague, selectedTeam, setSelectedTeam } = useContext(SelectedTeamContext);
 
+  // Check if there are selected league and team values in local storage
+  useEffect(() => {
+    const storedLeagueId = localStorage.getItem("selectedLeague");
+    if (storedLeagueId) {
+      setSelectedLeague(storedLeagueId);
+      setLeagueId(storedLeagueId);
+    }
+
+    const storedTeamId = localStorage.getItem("selectedTeam");
+    if (storedTeamId) {
+      setSelectedTeam(storedTeamId);
+    }
+  }, []);
+
   useEffect(() => {
     const fetchTeams = async () => {
       try {
@@ -53,7 +60,7 @@ const Home = ({ setLeagueId, setTeamId }) => {
             },
           }
         );
-  
+
         const data = await response.json();
         const teamsArray = data.response.map((item) => item.team);
         setTeams(teamsArray);
@@ -61,7 +68,7 @@ const Home = ({ setLeagueId, setTeamId }) => {
         console.error("Error fetching teams:", error);
       }
     };
-  
+
     fetchTeams();
   }, [selectedLeague]);
 
@@ -72,7 +79,7 @@ const Home = ({ setLeagueId, setTeamId }) => {
     setSelectedTeam(''); // Reset the selected team when the league changes
     localStorage.setItem("selectedLeague", leagueId); // Save the value to local storage
   };
-  
+
   const handleTeamSelect = (event) => {
     const teamId = parseInt(event.target.value);
     setSelectedTeam(teamId);
@@ -85,18 +92,16 @@ const Home = ({ setLeagueId, setTeamId }) => {
     } else {
       setSelectedClubTwitterHandle('');
     }
-
-    localStorage.setItem("selectedTeam", teamId); // Save the value to local storage
-  };  
+  };
 
   return (
     <SelectedTeamContext.Provider
-    value={{
+      value={{
         selectedLeague,
         selectedTeam,
         setSelectedLeague,
         setSelectedTeam,
-    }}
+      }}
     >
     <div className="App mx-4 sm:mx-12">
       <div className='flex flex-col md:flex-row items-center justify-center space-y-2 md:space-y-0 md:space-x-4'>
