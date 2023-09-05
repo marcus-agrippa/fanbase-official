@@ -30,7 +30,7 @@ const League = () => {
 
   return (
     <div className='w-[90vw]'>
-      <h1 className="text-3xl font-bold text-white text-center my-10">League Overview</h1>
+      <h1 className="text-3xl font-bold text-white text-center my-10">2023/24 League Overview</h1>
       <div className='grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-1 xl:grid-cols-3 gap-4 mt-4'>
         <div className="bg-gray-900 p-4 rounded shadow">
           <LeagueStandings leagueId={selectedLeague} season={2023} teamId={selectedTeam} />
