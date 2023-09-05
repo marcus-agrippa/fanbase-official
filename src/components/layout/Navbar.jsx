@@ -40,7 +40,7 @@ const Navbar = ({ title }) => {
 
   return (
     <div>
-      <nav className="navbar relative mb-12 shadow-lg bg-neutral text-neutral-content">
+      <nav className="navbar relative mb-12 shadow-lg bg-neutral w-screen text-neutral-content">
         <div className="container mx-auto">
           <div className="flex-1 px-2 mx-2">
             <GiSoccerBall className="inline pr-2 text-5xl" />
@@ -88,8 +88,8 @@ const Navbar = ({ title }) => {
           <div
             ref={menuRef}
             className={`${
-              menuOpen ? 'block w-full' : 'hidden' 
-            } absolute top-full left-0 md:relative md:w-auto md:static bg-neutral md:flex md:flex-2 z-20`} 
+              menuOpen ? 'block w-full' : 'hidden'  // Add w-full when the menu is open
+            } absolute top-full left-0 md:relative md:w-auto md:static bg-neutral md:flex md:flex-2 z-20`} // Increase z-index if necessary
           >
             <div className="flex flex-col md:flex-row justify-end items-center w-full md:items-center md:w-auto">
               <Link
