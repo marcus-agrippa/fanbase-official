@@ -43,17 +43,19 @@ const TeamFixtures = ({ teamId }) => {
     return false;
   };
 
-  const formatDate = (dateString) => {
-    const isSpecialDay = isDateTodayOrTomorrow(dateString);
-    if (isSpecialDay) {
-      return isSpecialDay;
-    }
-
+  const formatDisplayDate = (dateString) => {
     const date = new Date(dateString);
-    const options = { weekday: 'long', day: 'numeric', month: 'short', year: 'numeric' };
-
-    return date.toLocaleDateString(undefined, options);
-  }; 
+    const options = { weekday: 'long', year: 'numeric', month: 'short', day: 'numeric' };
+    return date.toLocaleDateString('en-US', options);
+  };
+  
+  const formatTime = (dateString) => {
+    const date = new Date(dateString);
+    const hours = date.getHours() % 12 || 12; // Get hours in 12-hour format without leading zero
+    const minutes = String(date.getMinutes()).padStart(2, '0');
+    const amPm = date.getHours() >= 12 ? 'PM' : 'AM';
+    return `${hours}:${minutes} ${amPm}`;
+  };
 
   const handleLoadMoreFixtures = () => {
     setFixturesToShow(fixturesToShow + 5);
@@ -85,7 +87,11 @@ const TeamFixtures = ({ teamId }) => {
     {upcomingFixtures.slice(0, fixturesToShow).map((fixture, index) => (
       <li key={index} className="flex items-center justify-center space-y-2 flex-row space-y-0 bg-gray-800 rounded-lg">
         <div className='flex flex-col'>
-          <h3 className="text-xl my-2 text-center">{formatDate(fixture.fixture.date)}</h3>
+        <h3 className="text-xl my-2 text-center">
+          <span className="hidden md:inline">{formatDisplayDate(fixture.fixture.date)} |</span>
+          <span className="md:hidden">{formatDisplayDate(fixture.fixture.date)}</span>
+          <span className="block md:inline"> {formatTime(fixture.fixture.date)}</span>
+        </h3>
           <div className="flex justify-center items-center">
             <h4 className="text-sm px-2 py-1 inline-block bg-accent my-3">{fixture.league.name}</h4>
           </div>
