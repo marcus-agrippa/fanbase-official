@@ -66,13 +66,32 @@ const TeamResults = ({ teamId }) => {
     return teamName.toUpperCase();
   };
 
-  const formatDate = (dateString) => {
+  const isDateTodayOrYesterday = (dateString) => {
+    const today = new Date();
+    const yesterday = new Date(today);
+    yesterday.setDate(yesterday.getDate() - 1);
+  
     const date = new Date(dateString);
-    const day = String(date.getDate()).padStart(2, '0');
-    const month = String(date.getMonth() + 1).padStart(2, '0');
-    const year = date.getFullYear();
-
-    return `${day}-${month}-${year}`;
+  
+    if (date.toDateString() === today.toDateString()) {
+      return 'Today';
+    } else if (date.toDateString() === yesterday.toDateString()) {
+      return 'Yesterday';
+    }
+  
+    return false;
+  };
+  
+  const formatDate = (dateString) => {
+    const isTodayOrYesterday = isDateTodayOrYesterday(dateString);
+    if (isTodayOrYesterday) {
+      return isTodayOrYesterday;
+    }
+  
+    const date = new Date(dateString);
+    const options = { weekday: 'long', year: 'numeric', month: 'short', day: 'numeric' };
+  
+    return date.toLocaleDateString(undefined, options);
   };
 
   const renderMatchDetails = (match, index) => {
