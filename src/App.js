@@ -28,7 +28,7 @@ function App() {
     <Router>
       <SelectedTeamProvider>
       <PageViews />
-      <div className="flex flex-col justify-between h-screen w-screen font-body">
+      <div className="flex flex-col justify-between h-screen font-body">
         <Navbar/>
         <main className="mx-auto pb-12">
           <Routes>

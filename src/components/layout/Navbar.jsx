@@ -39,7 +39,7 @@ const Navbar = ({ title }) => {
   }, [location]);
 
   return (
-    <div className='w-screen'>
+    <div>
       <nav className="navbar relative mb-12 shadow-lg bg-neutral text-neutral-content">
         <div className="container mx-auto">
           <div className="flex-1 px-2 mx-2">
@@ -89,7 +89,7 @@ const Navbar = ({ title }) => {
             ref={menuRef}
             className={`${
               menuOpen ? 'block' : 'hidden' // Conditional Rendering: If true display block and if false hide
-            } absolute top-full left-0 w-screen md:relative md:w-auto md:static bg-neutral md:flex md:flex-2 z-10`}
+            } absolute top-full left-0 md:relative md:w-auto md:static bg-neutral md:flex md:flex-2 z-10`}
           >
             <div className="flex flex-col md:flex-row justify-end items-center w-full md:items-center md:w-auto">
               <Link
