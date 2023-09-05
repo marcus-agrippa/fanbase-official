@@ -12,9 +12,11 @@ const Navbar = ({ title }) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const menuRef = useRef();
 
-  const toggleMenu = () => { // Used to change the state of the `menuOpen` state
+  const toggleMenu = () => { 
     setMenuOpen(!menuOpen);
   };
+
+  const toggleButtonRef = useRef();
 
   useEffect(() => {
     const closeMenu = () => {
@@ -22,10 +24,10 @@ const Navbar = ({ title }) => {
     };
 
     const handleClickOutside = (event) => {
-      if (menuRef.current && !menuRef.current.contains(event.target)) {
+      if (menuRef.current && !menuRef.current.contains(event.target) && !toggleButtonRef.current.contains(event.target)) {
         closeMenu();
       }
-    };
+    };    
 
     document.addEventListener('mousedown', handleClickOutside);
 
@@ -49,9 +51,10 @@ const Navbar = ({ title }) => {
             </Link>
           </div>
           <button
+            ref={toggleButtonRef}
             className="block md:hidden px-2 mx-2"
-            onClick={toggleMenu} // When clicked will open/close menu
-            aria-label="Toggle menu" // Labelling an interactive element
+            onClick={toggleMenu}
+            aria-label="Toggle menu"
           >
             {menuOpen ? (
               <svg
@@ -88,8 +91,8 @@ const Navbar = ({ title }) => {
           <div
             ref={menuRef}
             className={`${
-              menuOpen ? 'block w-full' : 'hidden'  // Add w-full when the menu is open
-            } absolute top-full left-0 md:relative md:w-auto md:static bg-neutral md:flex md:flex-2 z-20`} // Increase z-index if necessary
+              menuOpen ? 'block w-full' : 'hidden'  
+            } absolute top-full left-0 md:relative md:w-auto md:static bg-neutral md:flex md:flex-2 z-20`} 
           >
             <div className="flex flex-col md:flex-row justify-end items-center w-full md:items-center md:w-auto">
               <Link
