@@ -18,7 +18,10 @@ const TopShots = ({ leagueId }) => {
           },
         });
         const data = await response.json();
-        setTopShots(data.response.slice(0, 10));
+    
+        const sortedPlayers = data.response.sort((a, b) => (b.statistics[0].shots.total - a.statistics[0].shots.total));
+    
+        setTopShots(sortedPlayers.slice(0, 10));
       } catch (error) {
         console.error('Error fetching top shots:', error);
       }

@@ -18,7 +18,10 @@ const TopPassers = ({ leagueId }) => {
           },
         });
         const data = await response.json();
-        setTopPassers(data.response.slice(0, 10));
+    
+        const sortedPlayers = data.response.sort((a, b) => (b.statistics[0].passes.total - a.statistics[0].passes.total));
+    
+        setTopPassers(sortedPlayers.slice(0, 10));
       } catch (error) {
         console.error('Error fetching top passers:', error);
       }
