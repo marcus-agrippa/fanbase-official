@@ -88,8 +88,8 @@ const Navbar = ({ title }) => {
           <div
             ref={menuRef}
             className={`${
-              menuOpen ? 'block' : 'hidden' // Conditional Rendering: If true display block and if false hide
-            } absolute top-full left-0 md:relative md:w-auto md:static bg-neutral md:flex md:flex-2 z-10`}
+              menuOpen ? 'block w-full' : 'hidden' 
+            } absolute top-full left-0 md:relative md:w-auto md:static bg-neutral md:flex md:flex-2 z-20`} 
           >
             <div className="flex flex-col md:flex-row justify-end items-center w-full md:items-center md:w-auto">
               <Link
