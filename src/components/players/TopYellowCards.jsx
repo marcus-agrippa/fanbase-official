@@ -57,7 +57,7 @@ const TopYellowCards = ({ leagueId }) => {
               <img
                 src={player?.statistics?.[0]?.team?.logo}
                 alt=""
-                className="w-7 h-7 mr-4"
+                className="w-10 h-10 mr-4"
               />
               <div>
                 <span className="font-semibold">{player?.player?.name}</span>
