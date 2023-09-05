@@ -65,13 +65,29 @@ const LeagueResults = ({ leagueId }) => {
     return teamName.toUpperCase();
   };
 
-  const formatDate = (dateString) => {
-    const date = new Date(dateString);
-    const day = String(date.getDate()).padStart(2, '0');
-    const month = String(date.getMonth() + 1).padStart(2, '0');
-    const year = date.getFullYear();
+  const isDateTodayOrYesterday = (dateString) => {
+    const today = new Date();
+    const yesterday = new Date(today);
+    yesterday.setDate(today.getDate() - 1);
 
-    return `${day}-${month}-${year}`;
+    const date = new Date(dateString);
+
+    if (date.toDateString() === today.toDateString()) return "Today";
+    if (date.toDateString() === yesterday.toDateString()) return "Yesterday";
+
+    return false;
+  };
+
+  const formatDate = (dateString) => {
+    const isSpecialDay = isDateTodayOrYesterday(dateString);
+    if (isSpecialDay) {
+      return isSpecialDay;
+    }
+
+    const date = new Date(dateString);
+    const options = { weekday: 'long', day: 'numeric', month: 'short', year: 'numeric' };
+
+    return date.toLocaleDateString(undefined, options);
   };
 
   const renderMatchDetails = (match, index) => {

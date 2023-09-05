@@ -29,21 +29,30 @@ const LeagueFixtures = ({ leagueId }) => {
     }
   }, [leagueId]);
 
-  const formatDate = (dateString) => {
-    const date = new Date(dateString);
-    const day = String(date.getDate()).padStart(2, '0');
-    const month = String(date.getMonth() + 1).padStart(2, '0');
-    const year = date.getFullYear();
-    const hours = date.getHours() % 12 || 12; // Get hours in 12-hour format without leading zero
-    const minutes = String(date.getMinutes()).padStart(2, '0');
-    const amPm = date.getHours() >= 12 ? 'PM' : 'AM';
-  
-    return `${day}-${month}-${year} | ${hours}:${minutes} ${amPm}`;
-  };  
+  const isDateTodayOrTomorrow = (dateString) => {
+    const today = new Date();
+    const tomorrow = new Date(today);
+    tomorrow.setDate(today.getDate() + 1);
 
-  // const handleLoadMoreFixtures = () => {
-  //   setFixturesToShow(fixturesToShow + 10);
-  // };
+    const date = new Date(dateString);
+
+    if (date.toDateString() === today.toDateString()) return "Today";
+    if (date.toDateString() === tomorrow.toDateString()) return "Tomorrow";
+
+    return false;
+  };
+
+  const formatDate = (dateString) => {
+    const isSpecialDay = isDateTodayOrTomorrow(dateString);
+    if (isSpecialDay) {
+      return isSpecialDay;
+    }
+
+    const date = new Date(dateString);
+    const options = { weekday: 'long', day: 'numeric', month: 'short', year: 'numeric' };
+
+    return date.toLocaleDateString(undefined, options);
+  };
 
   // Filter fixtures to only include upcoming fixtures
   const upcomingFixtures = teamFixtures.filter(fixture => new Date(fixture.fixture.date) >= new Date());
