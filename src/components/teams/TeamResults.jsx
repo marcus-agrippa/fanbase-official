@@ -44,11 +44,9 @@ const TeamResults = ({ teamId }) => {
           },
         });
         const eventData = await response.json();
-        console.log("Match event data for fixture ID:", fixtureId, eventData.response);
         setTeamResults((prevResults) => {
           const updatedResults = [...prevResults];
           updatedResults[index].events = eventData.response;
-          console.log(updatedResults)
           return updatedResults;
         });
         setSelectedMatch(index);
