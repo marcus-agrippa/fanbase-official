@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { GiSoccerBall } from 'react-icons/gi';
+import { GiSoccerBall, GiWhistle } from 'react-icons/gi';
 import { TbRectangleVertical } from 'react-icons/tb';
 
 const BASE_URL = 'https://v3.football.api-sports.io';
@@ -44,9 +44,11 @@ const TeamResults = ({ teamId }) => {
           },
         });
         const eventData = await response.json();
+        console.log("Match event data for fixture ID:", fixtureId, eventData.response);
         setTeamResults((prevResults) => {
           const updatedResults = [...prevResults];
           updatedResults[index].events = eventData.response;
+          console.log(updatedResults)
           return updatedResults;
         });
         setSelectedMatch(index);
@@ -100,7 +102,7 @@ const TeamResults = ({ teamId }) => {
       const nonSubstitutionEvents = match.events.filter(event => event.type !== 'subst');
       
       return (
-        <div className='py-5'>
+        <div className='py-3'>
           <ul>
             {nonSubstitutionEvents.map((event, eventIndex) => (
               <li
@@ -111,16 +113,22 @@ const TeamResults = ({ teamId }) => {
               >
                 {event.time.elapsed}' - {' '}
                 {event.type === 'Goal' && (
-                  <div className="inline">
-                    <span className='font-bold'>
-                      <GiSoccerBall color="white" className="inline" /> {event.player.name}
-                    </span>
-                    {event.assist && event.assist.name && (
-                      <div style={{ display: 'block' }}>
-                        (assist {event.assist.name})
-                      </div>
-                    )}
-                  </div>
+                    event.detail === 'Own Goal' ? (
+                        <span>
+                            <GiSoccerBall color="white" className="inline" /> {event.player.name} (OG)
+                        </span>
+                    ) : (
+                        <div className="inline">
+                            <span className='font-bold'>
+                                <GiSoccerBall color="white" className="inline" /> {event.player.name}
+                            </span>
+                            {event.assist && event.assist.name && (
+                                <div style={{ display: 'block' }}>
+                                    (assist {event.assist.name})
+                                </div>
+                            )}
+                        </div>
+                    )
                 )}
                 {event.type === 'Card' && event.detail === 'Yellow Card' && (
                   <span>
@@ -130,6 +138,21 @@ const TeamResults = ({ teamId }) => {
                 {event.type === 'Card' && event.detail === 'Red Card' && (
                   <span>
                     <TbRectangleVertical color="red" fill='red' className='inline' /> {event.player.name} 
+                  </span>
+                )}
+                {event.type === 'Var' && event.detail === 'Goal cancelled' && (
+                  <span>
+                    <GiWhistle color="white" className='inline' /> Var (Goal Cancelled)
+                  </span>
+                )}
+                {event.type === 'Var' && event.detail === 'Penalty cancelled' && (
+                  <span>
+                    <GiWhistle color="white" className='inline' /> Var (Pen. Cancelled)
+                  </span>
+                )}
+                {event.type === 'Var' && event.detail === 'Penalty confirmed' && (
+                  <span>
+                    <GiWhistle color="white" className='inline' /> Var (Pen Confirmed)
                   </span>
                 )}
               </li>
