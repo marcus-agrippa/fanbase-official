@@ -14,17 +14,23 @@ import TeamStatistics from '../components/teams/TeamStatistics';
 
 const leagues = [
   { id: 39, name: "Premier League" },
-  { id: 40, name: "English Championship" },
   { id: 140, name: "Spanish La Liga" },
   { id: 135, name: "Italian Serie A" },
-  { id: 61, name: "French Ligue 1" },
   { id: 78, name: "German Bundesliga" },
-  { id: 179, name: "Scottish Premiership" },
   { id: 88, name: "Dutch Eredivisie" },
+  { id: 61, name: "French Ligue 1" },
   { id: 94, name: "Liga Portugal" },
   { id: 144, name: "Belgian Pro League" },
-  { id: 210, name: "Croation Football League" },
+  { id: 179, name: "Scottish Premiership" },
   { id: 203, name: "Turkish Süper Lig" },
+  { id: 218, name: "Austrian Bundesliga" },
+  { id: 207, name: "Swiss Super League" },
+  { id: 119, name: "Denmark Superlia" },
+  { id: 103, name: "Norway Eliteserien" },
+  { id: 210, name: "Croation Football League" },
+  { id: 40, name: "English Championship" },
+  { id: 41, name: "English League One" },
+  { id: 42, name: "English League Two" },
 ];
 
 const Home = ({ setLeagueId, setTeamId }) => {

@@ -82,6 +82,35 @@ const leagueBorders = (standingsLength) => ({
     elQualifiers: { min: 3, max: 3 },
     ecQualifiers: { min: 4, max: 4 },
     relegation: { min: standingsLength - 3, max: standingsLength },
+  },
+  // Austrian Bundesliga
+  "218": {
+    championshipRound: { min: 1, max: 6 },
+    relegationPlayOffs: { min: standingsLength - 5, max: standingsLength },
+  }, 
+  // Denmark Superliga
+  "119": {
+    championshipRound: { min: 1, max: 6 },
+    relegationPlayOffs: { min: standingsLength - 5, max: standingsLength },
+  }, 
+  // Norway Eliteserien
+  "103": {
+    clQualifiers: { min: 1, max: 1 },
+    ecQualifiers: { min: 2, max: 3 },
+    relegationPlayOffs: { min: standingsLength - 2, max: standingsLength - 2 },
+    relegation: { min: standingsLength - 1, max: standingsLength },
+  }, 
+  // English League One
+  "41": {
+    promotion: { min: 1, max: 2 },
+    promotionPlayOff: { min: 3, max: 6 },
+    relegation: { min: standingsLength - 2, max: standingsLength },
+  }, 
+  // English League Two
+  "42": {
+    promotion: { min: 1, max: 2 },
+    promotionPlayOff: { min: 3, max: 6 },
+    relegation: { min: standingsLength - 2, max: standingsLength },
   }, 
 });
 
