@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect, useRef } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { GiSoccerBall } from 'react-icons/gi';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
@@ -7,7 +7,6 @@ import SelectedTeamContext from '../../context/SelectedTeamContext';
 
 const Navbar = ({ title }) => {
   const { selectedLeague, selectedTeam } = useContext(SelectedTeamContext);
-  const navigate = useNavigate();
   const location = useLocation();
   const [menuOpen, setMenuOpen] = useState(false);
   const menuRef = useRef();
@@ -42,7 +41,7 @@ const Navbar = ({ title }) => {
 
   return (
     <div>
-      <nav className="navbar relative mb-12 shadow-lg bg-neutral w-screen text-neutral-content">
+      <nav className="navbar relative mb-12 shadow-lg bg-neutral text-neutral-content">
         <div className="container mx-auto">
           <div className="flex-1 px-2 mx-2">
             <GiSoccerBall className="inline pr-2 text-5xl" />

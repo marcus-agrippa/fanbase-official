@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import TeamStatisticsGoalsChart from '../stats/TeamStatisticsGoalsChart';
 import TeamGoalDistributionChart from '../stats/TeamGoalDistributionChart';
 
 const BASE_URL = 'https://v3.football.api-sports.io';
@@ -18,7 +17,6 @@ const TeamStatistics = ({ teamId, leagueId }) => {
           },
         });
         const data = await response.json();
-        console.log('team stats data', data)
         setTeamStats(data.response);
       } catch (error) {
         console.error('Error fetching team statistics:', error);
@@ -28,7 +26,6 @@ const TeamStatistics = ({ teamId, leagueId }) => {
     fetchTeamStatistics();
   }, [teamId, leagueId]);
 
-  // Render team statistics here
   return (
     <div>
       {teamStats ? (
