@@ -10,8 +10,6 @@ import NextFixture from '../components/teams/NextFixture';
 import InjuriesAndSuspensions from '../components/teams/InjuriesAndSuspensions';
 import TransferNews from '../components/teams/TransferNews';
 import ManagerDetails from '../components/teams/ManagerDetails';
-import { clubsTwitterHandles } from '../data/clubsTwitterHandles';
-import TeamTwitter from '../components/teams/TeamTwitter';
 import TeamStatistics from '../components/teams/TeamStatistics';
 
 const leagues = [
@@ -25,13 +23,16 @@ const leagues = [
   { id: 88, name: "Dutch Eredivisie" },
   { id: 94, name: "Liga Portugal" },
   { id: 144, name: "Belgian Pro League" },
+  { id: 210, name: "Croation Football League" },
+  { id: 203, name: "Turkish Süper Lig" },
 ];
 
 const Home = ({ setLeagueId, setTeamId }) => {
   const navigate = useNavigate();
-  const [selectedClubTwitterHandle, setSelectedClubTwitterHandle] = useState('');
 
   const [teams, setTeams] = useState([]);
+  const [loading, setLoading] = useState(true); // Add a loading state
+
   const { selectedLeague, setSelectedLeague, selectedTeam, setSelectedTeam } = useContext(SelectedTeamContext);
 
   // Check if there are selected league and team values in local storage
@@ -39,13 +40,14 @@ const Home = ({ setLeagueId, setTeamId }) => {
     const storedLeagueId = localStorage.getItem("selectedLeague");
     if (storedLeagueId) {
       setSelectedLeague(storedLeagueId);
-      setLeagueId(storedLeagueId);
     }
 
     const storedTeamId = localStorage.getItem("selectedTeam");
     if (storedTeamId) {
       setSelectedTeam(storedTeamId);
     }
+
+    setLoading(false); // Set loading to false when data is loaded
   }, []);
 
   useEffect(() => {
@@ -76,8 +78,6 @@ const Home = ({ setLeagueId, setTeamId }) => {
   const handleLeagueSelect = (event) => {
     const leagueId = event.target.value;
     setSelectedLeague(leagueId);
-    setLeagueId(leagueId);
-    setSelectedTeam(''); // Reset the selected team when the league changes
     localStorage.setItem("selectedLeague", leagueId); // Save the value to local storage
   };
 
@@ -85,15 +85,12 @@ const Home = ({ setLeagueId, setTeamId }) => {
     const teamId = parseInt(event.target.value);
     setSelectedTeam(teamId);
     localStorage.setItem("selectedTeam", teamId); // Save the value to local storage
-
-    // Find the corresponding Twitter handle of the selected club
-    const selectedClubTwitter = clubsTwitterHandles.find(club => club.id === teamId);
-    if (selectedClubTwitter) {
-      setSelectedClubTwitterHandle(selectedClubTwitter.twitterHandle);
-    } else {
-      setSelectedClubTwitterHandle('');
-    }
   };
+
+  // Conditional rendering based on loading state
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <SelectedTeamContext.Provider
@@ -120,12 +117,14 @@ const Home = ({ setLeagueId, setTeamId }) => {
         ))}
       </select>
       <label htmlFor="team-selector" className="text-sm md:text-base">Select a team:</label>
-      <TeamSelector
-        teams={teams}
-        selectedTeam={selectedTeam}
-        handleTeamSelect={handleTeamSelect}
-        leagueId={selectedLeague}
-      />
+      {teams.length > 0 && ( 
+            <TeamSelector
+              teams={teams}
+              selectedTeam={selectedTeam}
+              handleTeamSelect={handleTeamSelect}
+              leagueId={selectedLeague}
+            />
+      )}
     </div>
 
       {selectedTeam && (

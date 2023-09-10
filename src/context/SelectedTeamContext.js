@@ -1,4 +1,4 @@
-import { createContext, useState } from 'react';
+import { createContext, useState, useEffect } from 'react';
 
 const SelectedTeamContext = createContext();
 
@@ -12,8 +12,18 @@ export const SelectedTeamProvider = ({ children }) => {
     { id: 179, name: "SPL" },
   ];
 
-  const [selectedLeague, setSelectedLeague] = useState(leagues[0].id);
+  // Initialize selectedLeague and selectedTeam states with values from local storage
+  const [selectedLeague, setSelectedLeague] = useState(() => {
+    const storedLeagueId = localStorage.getItem("selectedLeague");
+    return storedLeagueId ? parseInt(storedLeagueId) : leagues[0].id;
+  });
+
   const [selectedTeam, setSelectedTeam] = useState('');
+
+  useEffect(() => {
+    // Update local storage when selectedLeague changes
+    localStorage.setItem("selectedLeague", selectedLeague.toString());
+  }, [selectedLeague]);
 
   return (
     <SelectedTeamContext.Provider

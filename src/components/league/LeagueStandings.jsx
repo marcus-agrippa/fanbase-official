@@ -70,11 +70,25 @@ const leagueBorders = (standingsLength) => ({
     elPlayOffs: { min: 5, max: 8 },
     relegation: { min: standingsLength - 2, max: standingsLength },
   }, 
+  // Croation Football League
+  "210": {
+    championshipRound: { min: 1, max: 4 },
+    elPlayOffs: { min: 5, max: 8 },
+    relegation: { min: standingsLength - 2, max: standingsLength },
+  }, 
+  // Turkish Super Lig
+  "203": {
+    clQualifiers: { min: 1, max: 2 },
+    elQualifiers: { min: 3, max: 3 },
+    ecQualifiers: { min: 4, max: 4 },
+    relegation: { min: standingsLength - 3, max: standingsLength },
+  }, 
 });
 
 const LeagueStandings = ({ leagueId, season, teamId }) => {
   const [standings, setStandings] = useState([]);
   const [leagueName, setLeagueName] = useState([]);
+  const [legend, setLegend] = useState({});
 
   useEffect(() => {
     const fetchStandings = async () => {
@@ -129,11 +143,11 @@ const LeagueStandings = ({ leagueId, season, teamId }) => {
     
       for (const [border, range] of Object.entries(borders)) {
         if (teamRank >= range.min && teamRank <= range.max) {
-          const borderColor = border === "clGroupStage" ? "border-blue-500" :
-                              border === "clQualifiers" ? "border-blue-200" :
-                              border === "elGroupStage" ? "border-green-500" :
-                              border === "elQualifiers" ? "border-green-200" :
-                              border === "ecQualifiers" ? "border-green-200" :
+          const borderColor = border === "clGroupStage" ?   "border-blue-600" :
+                              border === "clQualifiers" ? "border-blue-300" :
+                              border === "elGroupStage" ? "border-green-600" :
+                              border === "elQualifiers" ? "border-green-300" :
+                              border === "ecQualifiers" ? "border-purple-600" :
                               border === "elPlayOffs" ? "border-green-800" :
                               border === "promotion" ? "border-green-500" :
                               border === "promotionPlayOff" ? "border-blue-500" :
@@ -181,12 +195,12 @@ const LeagueStandings = ({ leagueId, season, teamId }) => {
       };
     
       const borderColor = {
-        clGroupStage: "blue-500",
-        clQualifiers: "blue-200",
-        elGroupStage: "green-500",
-        elQualifiers: "green-200",
-        ecQualifiers: "green-200",
-        elPlayOffs: "green-800",
+        clGroupStage: "blue-600",
+        clQualifiers: "blue-300",
+        elGroupStage: "green-600",
+        elQualifiers: "green-300",
+        ecQualifiers: "purple-600",
+        elPlayOffs: "green-300",
         promotion: "green-500",
         promotionPlayOff: "blue-500",
         championshipRound: "blue-500",
