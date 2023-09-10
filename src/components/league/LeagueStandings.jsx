@@ -88,6 +88,11 @@ const leagueBorders = (standingsLength) => ({
     championshipRound: { min: 1, max: 6 },
     relegationPlayOffs: { min: standingsLength - 5, max: standingsLength },
   }, 
+  // Swiss Superleague
+  "207": {
+    championshipRound: { min: 1, max: 6 },
+    relegationPlayOffs: { min: standingsLength - 5, max: standingsLength },
+  }, 
   // Denmark Superliga
   "119": {
     championshipRound: { min: 1, max: 6 },
