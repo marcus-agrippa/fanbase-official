@@ -81,10 +81,16 @@ const ManagerDetails = ({ teamId }) => {
             <span className="text-accent mr-2">Start Date:</span>{" "}
             {manager.career && manager.career[0].start || "N/A"}
           </p>
-          <p className="my-4">
-            <span className="text-accent mr-2">Previous Club:</span>{" "}
-            {manager.career && manager.career[1].team.name || "N/A"}
-          </p>
+          {manager.career && manager.career[1] ? (
+            <p className="my-4">
+              <span className="text-accent mr-2">Previous Club:</span>{" "}
+              {manager.career[1].team.name}
+            </p>
+          ) : (
+            <p className="my-4">
+              <span className="text-accent mr-2">Previous Club:</span> N/A
+            </p>
+          )}
         </div>
       )}
       <div>

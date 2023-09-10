@@ -74,6 +74,7 @@ const leagueBorders = (standingsLength) => ({
 
 const LeagueStandings = ({ leagueId, season, teamId }) => {
   const [standings, setStandings] = useState([]);
+  const [leagueName, setLeagueName] = useState([]);
 
   useEffect(() => {
     const fetchStandings = async () => {
@@ -89,6 +90,7 @@ const LeagueStandings = ({ leagueId, season, teamId }) => {
         const data = await response.json();
         if (data && data.response && data.response[0] && data.response[0].league && data.response[0].league.standings) {
           setStandings(data.response[0].league.standings[0]);
+          setLeagueName(data.response[0].league.name)
         } else {
           console.error('Unexpected API response structure');
         }
@@ -206,7 +208,7 @@ const LeagueStandings = ({ leagueId, season, teamId }) => {
   
   return (
     <div className="bg-dark-1 text-white p-4 rounded-lg">
-      <h1 className="text-3xl font-bold text-center my-4">League Standings</h1>
+      <h1 className="text-3xl font-bold text-center my-4">{leagueName} Table</h1>
       <div className="overflow-x-auto mt-10">
         <table className="w-full table-auto">
           <thead>

@@ -97,7 +97,9 @@ const Navbar = ({ title }) => {
             <div className="flex flex-col md:flex-row justify-end items-center w-full md:items-center md:w-auto">
               <Link
                 to="/"
-                className="btn btn-ghost flex bt-sm rounded-btn block"
+                className={`btn btn-ghost flex bt-sm rounded-btn block ${
+                  location.pathname === '/' ? 'text-blue-500' : ''
+                }`}
               >
                 Home
               </Link>
@@ -107,7 +109,9 @@ const Navbar = ({ title }) => {
                     ? `?leagueId=${selectedLeague}&teamId=${selectedTeam}`
                     : ''
                 }`}
-                className="btn btn-ghost flex bt-sm rounded-btn block"
+                className={`btn btn-ghost flex bt-sm rounded-btn block ${
+                  location.pathname.startsWith('/players') ? 'text-blue-500' : ''
+                }`}
               >
                 Players
               </Link>
@@ -117,19 +121,25 @@ const Navbar = ({ title }) => {
                     ? `?leagueId=${selectedLeague}&teamId=${selectedTeam}`
                     : ''
                 }`}
-                className="btn btn-ghost flex bt-sm rounded-btn block"
+                className={`btn btn-ghost flex bt-sm rounded-btn block ${
+                  location.pathname.startsWith('/league') ? 'text-blue-500' : ''
+                }`}
               >
                 League
               </Link>
               <Link
                 to="/news"
-                className="btn btn-ghost flex bt-sm rounded-btn block"
+                className={`btn btn-ghost flex bt-sm rounded-btn block ${
+                  location.pathname === '/news' ? 'text-blue-500' : ''
+                } border-t-4`}
               >
                 News
               </Link>
               <Link
                 to="/about"
-                className="btn btn-ghost flex bt-sm rounded-btn block"
+                className={`btn btn-ghost flex bt-sm rounded-btn block ${
+                  location.pathname === '/about' ? 'text-blue-500' : ''
+                }`}
               >
                 About
               </Link>

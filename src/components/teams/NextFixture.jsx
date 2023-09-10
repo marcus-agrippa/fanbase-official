@@ -65,11 +65,11 @@ const NextFixture = ({ teamId }) => {
     <div className="bg-dark-1 text-white p-4 rounded-lg">
       <h1 className="text-3xl font-bold text-center my-4">Next Fixture</h1>
       <div className="flex justify-center items-center mt-10">
-        <img src={nextFixture.teams.home.logo} alt="home logo" className="w-10 h-10 m-auto mr-4" />
+        <img src={nextFixture.teams.home.logo} alt="home logo" className="w-12 h-12 m-auto mr-4" />
         <p className="text-xl flex flex-col">
         {shortenTeamName(nextFixture.teams.home.name)} vs {shortenTeamName(nextFixture.teams.away.name)}
         </p>
-        <img src={nextFixture.teams.away.logo} alt="away logo" className="w-10 h-10 m-auto ml-4" />
+        <img src={nextFixture.teams.away.logo} alt="away logo" className="w-12 h-12 m-auto ml-4" />
       </div>
       <div className='text-center'>
         <p className='text-sm px-2 py-1 inline-block bg-accent my-3'>{nextFixture.league.name}</p>

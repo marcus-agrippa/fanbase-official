@@ -83,6 +83,7 @@ const TeamFixtures = ({ teamId }) => {
   return (
 <div className="bg-dark-1 text-white p-4 rounded-lg">
   <h1 className="text-3xl font-bold text-center my-4">Upcoming Fixtures</h1>
+  <h6 className='text-center'>All Competitions (Local Time)</h6>
   <ul className="space-y-10 mt-10">
     {upcomingFixtures.slice(0, fixturesToShow).map((fixture, index) => (
       <li key={index} className="flex items-center justify-center space-y-2 flex-row space-y-0 bg-gray-800 rounded-lg">

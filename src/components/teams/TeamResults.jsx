@@ -107,7 +107,7 @@ const TeamResults = ({ teamId }) => {
                 key={eventIndex}
                 className={` ${
                   event.team.id === match.teams.home.id ? 'text-left' : 'text-right'
-                }`}
+                } py-1`}
               >
                 {event.time.elapsed}' - {' '}
                 {event.type === 'Goal' && (
@@ -165,6 +165,7 @@ const TeamResults = ({ teamId }) => {
   return (
     <div className="bg-dark-1 text-white p-4 rounded-lg">
       <h1 className="text-3xl font-bold text-center my-4">Recent Results</h1>
+      <h6 className='text-center'>All Competitions</h6>
       <ul className="space-y-10 mt-10">
         {teamResults.map((result, index) => (
           <li key={index} className="flex items-center justify-center space-y-2 flex-row space-y-0 bg-gray-800 rounded-lg">
@@ -176,7 +177,7 @@ const TeamResults = ({ teamId }) => {
               <div className='flex flex-row justify-center items-center my-4'>
                 <div className='flex flex-row items-center'>
                   <span className="text-lg text-xl">{shortenTeamName(result.teams.home.name)}</span>
-                  <span><img src={result.teams.home.logo} alt="home logo" className="w-7 h-7 h-full m-auto ml-3 mr-3" /></span>
+                  <span><img src={result.teams.home.logo} alt="home logo" className="w-10 h-10 h-full m-auto ml-3 mr-3" /></span>
                 </div>
                 <div className="flex flex-row items-center">
                   <div className="bg-blue-500 text-white font-bold text-lg p-1 border-r-2 border-blue-300 w-8 text-center">
@@ -187,7 +188,7 @@ const TeamResults = ({ teamId }) => {
                   </div>
                 </div>
                 <div className='flex flex-row items-center'>
-                  <span><img src={result.teams.away.logo} alt="away logo" className="w-7 h-7 h-full m-auto ml-3 mr-3" /></span>
+                  <span><img src={result.teams.away.logo} alt="away logo" className="w-10 h-10 h-full m-auto ml-3 mr-3" /></span>
                   <span className="text-lg text-xl">{shortenTeamName(result.teams.away.name)}</span>
                 </div>
               </div>

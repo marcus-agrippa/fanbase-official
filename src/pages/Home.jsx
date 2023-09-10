@@ -12,6 +12,7 @@ import TransferNews from '../components/teams/TransferNews';
 import ManagerDetails from '../components/teams/ManagerDetails';
 import { clubsTwitterHandles } from '../data/clubsTwitterHandles';
 import TeamTwitter from '../components/teams/TeamTwitter';
+import TeamStatistics from '../components/teams/TeamStatistics';
 
 const leagues = [
   { id: 39, name: "Premier League" },
@@ -128,7 +129,7 @@ const Home = ({ setLeagueId, setTeamId }) => {
     </div>
 
       {selectedTeam && (
-        <div className="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4 mt-4">
+        <div className="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 xl:w-[90vw] gap-4 mt-4">
           <div className="bg-gray-900 p-4 rounded shadow">
             <TeamData teamId={selectedTeam} />
           </div>
@@ -136,7 +137,7 @@ const Home = ({ setLeagueId, setTeamId }) => {
             <NextFixture teamId={selectedTeam} />
           </div>
           <div className="bg-gray-900 p-4 rounded shadow">
-            <TeamTwitter twitterHandle={selectedClubTwitterHandle} />
+            <TeamStatistics teamId={selectedTeam} leagueId={selectedLeague} />
           </div>
           <div className="bg-gray-900 p-4 rounded shadow">
             <LeagueStandings leagueId={selectedLeague} season={2023} teamId={selectedTeam} />
