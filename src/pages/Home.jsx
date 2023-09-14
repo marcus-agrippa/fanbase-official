@@ -13,7 +13,7 @@ import ManagerDetails from '../components/teams/ManagerDetails';
 import TeamStatistics from '../components/teams/TeamStatistics';
 
 const leagues = [
-  { id: 39, name: "Premier League" },
+  { id: 39, name: "English Premier League" },
   { id: 140, name: "Spanish La Liga" },
   { id: 135, name: "Italian Serie A" },
   { id: 78, name: "German Bundesliga" },
