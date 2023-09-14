@@ -25,12 +25,13 @@ const TransferNews = ({ teamId }) => {
     fetchTransfers();
   }, [teamId]);
 
-  const currentDate = new Date();
-  const sixMonthsAgo = new Date(currentDate.setMonth(currentDate.getMonth() - 3));
+  // Get the current year
+  const currentYear = new Date().getFullYear();
 
+  // Filter transfers based on the current year
   const recentTransfers = transfers.filter((transfer) => {
     const transferDate = new Date(transfer.transfers[0].date);
-    return transferDate >= sixMonthsAgo;
+    return transferDate.getFullYear() === currentYear;
   });
 
   const formatDate = (dateString) => {
@@ -45,7 +46,7 @@ const TransferNews = ({ teamId }) => {
   return (
     <div className="bg-dark-1 text-white p-4 rounded-lg relative">
       <h1 className="text-3xl font-bold text-center my-4">Recent Transfers</h1>
-      <p className='text-center'>Last 3 months</p>
+      <p className='text-center'>Current Year</p>
       <div className="mt-10">
         {recentTransfers.slice(0, showAll ? recentTransfers.length : 5).map((transfer, index) => (
           <div key={index} className={`border border-gray-500 rounded p-4 mb-4 ${index % 2 === 1 ? 'bg-gray-800' : ''}`}>
@@ -63,7 +64,7 @@ const TransferNews = ({ teamId }) => {
                 <img
                   src={transfer.transfers[0].teams.in.logo}
                   alt={transfer.transfers[0].teams.in.name}
-                  className="w-8 h-8"
+                  className="w-8 h-8 mr-2"
                 />
                 <span className="text-white">{transfer.transfers[0].teams.in.name}</span>
               </div>
@@ -92,5 +93,6 @@ const TransferNews = ({ teamId }) => {
 };
 
 export default TransferNews;
+
 
 
