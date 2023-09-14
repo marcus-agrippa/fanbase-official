@@ -179,13 +179,16 @@ const TeamResults = ({ teamId }) => {
                   <span className="text-lg text-xl">{shortenTeamName(result.teams.home.name)}</span>
                   <span><img src={result.teams.home.logo} alt="home logo" className="w-10 h-10 h-full m-auto ml-3 mr-3" /></span>
                 </div>
-                <div className="flex flex-row items-center">
-                  <div className="bg-blue-500 text-white font-bold text-lg p-1 border-r-2 border-blue-300 w-8 text-center">
-                    {result.goals.home}
+                <div className='flex flex-col items-center'>
+                  <div className="flex flex-row items-center">
+                    <div className="bg-blue-500 text-white font-bold text-lg p-1 border-r-2 border-blue-300 w-8 text-center">
+                      {result.goals.home}
+                    </div>
+                    <div className="bg-blue-500 text-white font-bold text-lg p-1 w-8 text-center">
+                      {result.goals.away}
+                    </div>
                   </div>
-                  <div className="bg-blue-500 text-white font-bold text-lg p-1 w-8 text-center">
-                    {result.goals.away}
-                  </div>
+                  <span className='text-slate-300 pt-2'>FT</span>
                 </div>
                 <div className='flex flex-row items-center'>
                   <span><img src={result.teams.away.logo} alt="away logo" className="w-10 h-10 h-full m-auto ml-3 mr-3" /></span>
