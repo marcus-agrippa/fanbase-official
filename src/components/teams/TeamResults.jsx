@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { GiSoccerBall, GiWhistle } from 'react-icons/gi';
+import { RxCross1 } from 'react-icons/rx'
+import { BsChevronDown, BsChevronUp } from 'react-icons/bs'
 import { TbRectangleVertical } from 'react-icons/tb';
 
 const BASE_URL = 'https://v3.football.api-sports.io';
@@ -7,6 +9,7 @@ const BASE_URL = 'https://v3.football.api-sports.io';
 const TeamResults = ({ teamId }) => {
   const [teamResults, setTeamResults] = useState([]);
   const [selectedMatch, setSelectedMatch] = useState(null);
+  const [active, setActive] = useState(null);
 
   useEffect(() => {
     const fetchTeamResults = async (teamId) => {
@@ -34,6 +37,7 @@ const TeamResults = ({ teamId }) => {
   const toggleMatchDetails = async (index, fixtureId) => {
     if (selectedMatch === index) {
       setSelectedMatch(null);
+      setActive(null); 
     } else {
       try {
         const response = await fetch(`${BASE_URL}/fixtures/events?fixture=${fixtureId}`, {
@@ -44,12 +48,15 @@ const TeamResults = ({ teamId }) => {
           },
         });
         const eventData = await response.json();
+        console.log('match details', eventData);
         setTeamResults((prevResults) => {
           const updatedResults = [...prevResults];
           updatedResults[index].events = eventData.response;
           return updatedResults;
         });
         setSelectedMatch(index);
+        setActive(index);
+        
       } catch (error) {
         console.error('Error fetching match events:', error);
       }
@@ -115,6 +122,14 @@ const TeamResults = ({ teamId }) => {
                         <span>
                             <GiSoccerBall color="white" className="inline" /> {event.player.name} (OG)
                         </span>
+                    ) : event.detail === 'Penalty' ? (
+                      <span>
+                      <GiSoccerBall color="white" className="inline" /> {event.player.name} (Penalty)
+                      </span>
+                    ) : event.detail === 'Missed Penalty' ? (
+                      <span>
+                      <RxCross1 color="red" className="inline" /> {event.player.name} (Missed Penalty)
+                    </span>
                     ) : (
                         <div className="inline">
                             <span className='font-bold'>
@@ -141,6 +156,16 @@ const TeamResults = ({ teamId }) => {
                 {event.type === 'Var' && event.detail === 'Goal cancelled' && (
                   <span>
                     <GiWhistle color="white" className='inline' /> Var (Goal Cancelled)
+                  </span>
+                )}
+                {event.type === 'Var' && event.detail === 'Goal Disallowed' && (
+                  <span>
+                    <GiWhistle color="white" className='inline' /> Var (Goal Disallowed)
+                  </span>
+                )}
+                {event.type === 'Var' && event.detail === 'Goal Disallowed - offside' && (
+                  <span>
+                    <GiWhistle color="white" className='inline' /> Var (No Goal - Offside)
                   </span>
                 )}
                 {event.type === 'Var' && event.detail === 'Penalty cancelled' && (
@@ -195,7 +220,14 @@ const TeamResults = ({ teamId }) => {
                   <span className="text-lg text-xl">{shortenTeamName(result.teams.away.name)}</span>
                 </div>
               </div>
-              <button onClick={() => toggleMatchDetails(index, result.fixture.id)} className='py-2 text-white font-bold'>Match Details</button>
+              <button onClick={() => toggleMatchDetails(index, result.fixture.id)} className='py-2 text-white font-bold'>
+                Match Details
+                {active === index ? (
+                  <BsChevronUp className='ml-3 inline' /> // Display the "up" chevron when match details are active
+                ) : (
+                  <BsChevronDown className='ml-3 inline' /> // Display the "down" chevron when match details are not active
+                )}
+              </button>
               {renderMatchDetails(result, index)}
             </div>
           </li>
