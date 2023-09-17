@@ -40,14 +40,8 @@ const NextFixture = ({ teamId }) => {
 
   const formatDate = (dateString) => {
     const date = new Date(dateString);
-    const day = String(date.getDate()).padStart(2, '0');
-    const month = String(date.getMonth() + 1).padStart(2, '0');
-    const year = date.getFullYear();
-    const hours = date.getHours() % 12 || 12; // Get hours in 12-hour format without leading zero
-    const minutes = String(date.getMinutes()).padStart(2, '0');
-    const amPm = date.getHours() >= 12 ? 'PM' : 'AM';
-
-    return `${day}-${month}-${year}, ${hours}:${minutes} ${amPm}`;
+    const options = { weekday: 'long', year: 'numeric', month: 'short', day: 'numeric', hour: 'numeric', minute: 'numeric', hour12: true };
+    return date.toLocaleDateString('en-US', options);
   };
 
   if (!nextFixture) {
@@ -74,15 +68,18 @@ const NextFixture = ({ teamId }) => {
       <div className='text-center'>
         <p className='text-sm px-2 py-1 inline-block bg-accent my-3'>{nextFixture.league.name}</p>
         <p className='my-5'><span className='text-accent mr-2'></span>{nextFixture.league.round}</p>
-        <p className='my-5'><span className='text-accent mr-2'>Date/Time:</span>{formatDate(nextFixture.fixture.date)}</p>
+        <p className='my-1'>
+          <span className='text-accent mr-2'>Date/Time:</span>
+          {formatDate(nextFixture.fixture.date)}
+        </p>
         <p className='my-5'><span className='text-accent mr-2'>Venue:</span>{nextFixture.fixture.venue.name}</p>
         <p className='my-5'>
           <span className='text-accent mr-2'>Referee:</span>
           {nextFixture.fixture.referee ? nextFixture.fixture.referee : 'TBC'}
         </p>
       </div>
-      <div className='flex justify-center'>
-      <HeadToHeadStats team1Id={homeTeamId} team2Id={awayTeamId} />
+      <div className='flex justify-center flex-col'>
+      <HeadToHeadStats team1Id={homeTeamId} team2Id={awayTeamId} fixtureID={nextFixture.fixture.id} />
       </div>   
     </div>
   );

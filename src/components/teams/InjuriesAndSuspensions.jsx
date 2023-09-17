@@ -54,13 +54,13 @@ const InjuriesAndSuspensions = ({ teamId, season }) => {
           <div key={index} className={`border border-gray-500 rounded p-4 mb-4 ${index % 2 === 1 ? 'bg-gray-800' : ''}`}>
             <div className="text-center">
               <p className="font-bold text-white mb-1">{injury.player.name}</p>
-              <p className="text-xs text-gray-400">{formatDate(injury.fixture.date)}</p> {/* Display transfer date */}
+              <p className="text-xs text-gray-400">{formatDate(injury.fixture.date)}</p> 
               <div className="flex items-center justify-center">
                 <img
                   src={injury.league.logo}
                   alt={injury.league.name}
                   className="w-8 h-8 mx-auto mt-2 rounded-full bg-white p-1"
-                /> {/* Display league logo */}
+                /> 
               </div>
               <p className="text-sm px-2 py-1 inline-block bg-accent my-3">{injury.league.name}</p>
               <p className="text-white mb-1">{injury.player.reason}</p>

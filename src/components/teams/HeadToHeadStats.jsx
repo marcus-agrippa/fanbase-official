@@ -13,26 +13,39 @@ async function fetchHeadToHeadStats(team1Id, team2Id) {
   return await response.json();
 }
 
-const HeadToHeadStats = ({ team1Id, team2Id }) => {
+async function fetchPrediction(fixtureId) {
+  const response = await fetch(`${BASE_URL}/predictions?fixture=${fixtureId}`, {
+    method: 'GET',
+    headers: {
+      'x-rapidapi-host': 'v3.football.api-sports.io',
+      'x-rapidapi-key': `${process.env.REACT_APP_FOOTBALL_API_TOKEN}`,
+    },
+  });
+  return await response.json();
+}
+
+const HeadToHeadStats = ({ team1Id, team2Id, fixtureID }) => {
   const [headToHeadStats, setHeadToHeadStats] = useState(null);
+  const [prediction, setPrediction] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
   const formatDate = (dateString) => {
     const date = new Date(dateString);
-    const day = String(date.getDate()).padStart(2, '0');
-    const month = String(date.getMonth() + 1).padStart(2, '0');
-    const year = date.getFullYear();
-
-    return `${day}-${month}-${year}`;
+    const options = { year: 'numeric', month: 'short', day: 'numeric' };
+    return date.toLocaleDateString('en-US', options);
   };
 
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
       try {
-        const data = await fetchHeadToHeadStats(team1Id, team2Id);
-        setHeadToHeadStats(data.response);
+        const [statsData, predictionData] = await Promise.all([
+          fetchHeadToHeadStats(team1Id, team2Id),
+          fetchPrediction(fixtureID), // Use the fixtureID prop here
+        ]);
+        setHeadToHeadStats(statsData.response);
+        setPrediction(predictionData.response[0].predictions);
         setError(null);
       } catch (error) {
         setError(error);
@@ -50,29 +63,56 @@ const HeadToHeadStats = ({ team1Id, team2Id }) => {
   }
 
   if (error) {
-    return <p>Error fetching head to head stats: {error.message}</p>;
+    return <p>Error fetching data: {error.message}</p>;
   }
 
-  if (!headToHeadStats || !headToHeadStats[0]) {
-    return <p>No head to head stats available.</p>;
+  if (!headToHeadStats || !headToHeadStats[0] || !prediction) {
+    return <p>No data available.</p>;
   }
 
   return (
-    <div className="bg-dark-1 text-white p-4 rounded-lg">
-      <h2 className="text-2xl font-bold my-4 text-center">Head-to-Head Statistics</h2>
-      <ul>
-        {headToHeadStats.slice(-5).map((fixture, index) => (
-          <li key={index} className='flex items-center justify-center my-4'>
-            <img src={fixture.teams.home.logo} alt="home logo" className="w-6 h-6 mx-2" />
-             {fixture.goals.home} - {fixture.goals.away}
-            <img src={fixture.teams.away.logo} alt="away logo" className="w-6 h-6 mx-2" />
-            <hr />
-            <p>{formatDate(fixture.fixture.date)}</p>
-          </li>
-        ))}
-      </ul>
+    <div>
+      <div className="bg-dark-1 text-white p-4 rounded-lg">
+        <h2 className="text-2xl font-bold my-4 text-center">H2H</h2>
+        <ul>
+          {headToHeadStats.slice(-5).map((fixture, index) => (
+            <li key={index} className="flex items-center justify-center my-1">
+              <img src={fixture.teams.home.logo} alt="home logo" className="w-6 h-6 mx-2" />
+              {fixture.goals.home} - {fixture.goals.away}
+              <img src={fixture.teams.away.logo} alt="away logo" className="w-6 h-6 mx-2" />
+              <hr />
+              <p className="my-5">{formatDate(fixture.fixture.date)}</p>
+            </li>
+          ))}
+        </ul>
+      </div>
+      {/* <img src={headToHeadStats.teams.home.logo} alt="home logo" className="w-6 h-6 mx-2" /> */}
+      <div className="bg-dark-1 text-white p-4 rounded-lg">
+        <h4 className="text-2xl font-bold my-4 text-center">Who Will Win?</h4>
+        <div className="flex flex-row items-center justify-center">
+          <div className="flex items-center justify-center flex-col w-1/3 mx-2">
+            <span className='my-2'>Home</span>
+            <div className="w-16 h-16 bg-indigo-500 text-white rounded-full flex items-center justify-center">
+              {prediction.percent.home}
+            </div>
+          </div>
+          <div className="flex items-center justify-center flex-col w-1/3 mx-2">
+            <span className='my-2'>Draw</span>
+            <div className="w-16 h-16 bg-indigo-500 text-white rounded-full flex items-center justify-center">
+              {prediction.percent.draw}
+            </div>
+          </div>
+          <div className="flex items-center justify-center flex-col w-1/3 mx-2">
+            <span className='my-2'>Away</span>
+            <div className="w-16 h-16 bg-indigo-500 text-white rounded-full flex items-center justify-center">
+              {prediction.percent.away}
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
 
 export default HeadToHeadStats;
+

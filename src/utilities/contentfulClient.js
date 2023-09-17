@@ -13,7 +13,7 @@ async function getTagName(tagId) {
 
 client
   .getEntries()
-  .then((response) => console.log(response.items))
+  // .then((response) => console.log(response.items))
   .catch(console.error);
 
 export default client;

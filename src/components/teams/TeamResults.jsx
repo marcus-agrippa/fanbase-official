@@ -48,7 +48,6 @@ const TeamResults = ({ teamId }) => {
           },
         });
         const eventData = await response.json();
-        console.log('match details', eventData);
         setTeamResults((prevResults) => {
           const updatedResults = [...prevResults];
           updatedResults[index].events = eventData.response;
@@ -112,9 +111,9 @@ const TeamResults = ({ teamId }) => {
             {nonSubstitutionEvents.map((event, eventIndex) => (
               <li
                 key={eventIndex}
-                className={` ${
+                className={`${
                   event.team.id === match.teams.home.id ? 'text-left' : 'text-right'
-                } py-1`}
+                } my-3`}
               >
                 {event.time.elapsed}' - {' '}
                 {event.type === 'Goal' && (
