@@ -87,7 +87,7 @@ const HeadToHeadStats = ({ team1Id, team2Id, fixtureID }) => {
         </ul>
       </div>
       {/* <img src={headToHeadStats.teams.home.logo} alt="home logo" className="w-6 h-6 mx-2" /> */}
-      <div className="bg-dark-1 text-white p-4 rounded-lg">
+      {/* <div className="bg-dark-1 text-white p-4 rounded-lg">
         <h4 className="text-2xl font-bold my-4 text-center">Who Will Win?</h4>
         <div className="flex flex-row items-center justify-center">
           <div className="flex items-center justify-center flex-col w-1/3 mx-2">
@@ -109,7 +109,7 @@ const HeadToHeadStats = ({ team1Id, team2Id, fixtureID }) => {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };
