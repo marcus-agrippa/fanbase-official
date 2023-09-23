@@ -127,10 +127,10 @@ const NextFixture = ({ teamId }) => {
         <div className='text-center'>
             <p className='text-sm px-2 py-1 inline-block bg-accent my-3'>{nextFixture.league.name}</p>
             <p className='my-2'><span className='text-accent mr-2'></span>{nextFixture.league.round}</p>
-            <div className="flex justify-center flex-col items-center my-3">
+            {/* <div className="flex justify-center flex-col items-center my-3">
                   <span className='my-2'>vs</span>
                   <img src={nextFixture.teams.away.logo} alt="away logo" className="w-10 h-10 mr-3 ml-3" />
-            </div>
+            </div> */}
             <p className='my-1'>
               <span className='text-accent mr-2'>Date/Time:</span>
               {formatDate(nextFixture.fixture.date)}
