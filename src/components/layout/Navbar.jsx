@@ -41,11 +41,11 @@ const Navbar = ({ title }) => {
 
   return (
     <div>
-      <nav className="navbar relative mb-12 shadow-lg bg-neutral text-neutral-content">
+      <nav className="navbar relative shadow-lg bg-neutral text-neutral-content">
         <div className="container mx-auto">
           <div className="flex-1 px-2 mx-2">
-            <GiSoccerBall className="inline pr-2 text-5xl" />
-            <Link to="/" className="text-1xl font-bold align-middle md:text-2xl">
+            <GiSoccerBall className="inline pr-2 text-5xl md:text-6xl" />
+            <Link to="/" className="text-1xl font-bold align-middle text-2xl md:text-3xl">
               {title}
             </Link>
           </div>

@@ -108,7 +108,7 @@ const Home = ({ setLeagueId, setTeamId }) => {
       }}
     >
     <div className="App mx-4 sm:mx-12">
-      <div className='flex flex-col md:flex-row items-center justify-center space-y-2 md:space-y-0 md:space-x-4'>
+      <div className='flex flex-col my-10 md:flex-row items-center justify-center space-y-2 md:space-y-0 md:space-x-4'>
       <label htmlFor="league-selector" className="text-sm md:text-base">Select a league:</label>
       <select
         id="league-selector"
